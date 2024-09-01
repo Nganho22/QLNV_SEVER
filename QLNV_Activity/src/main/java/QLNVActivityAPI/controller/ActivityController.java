@@ -62,21 +62,35 @@ public class ActivityController{
     
     
     @GetMapping("/searchCoBan")
-    public List<Activity> searchActivitiesCoBan(@RequestParam("term") String searchTerm) {
-        String escapedTerm = searchTerm.replaceAll("([\\W])", "\\\\$1");
-        String regex = "(?i).*" + escapedTerm + ".*";
-        System.out.println("Searching with regex: " + regex);
-        int Loai = 1;
-        return repo.findByTenHoatDongRegex(regex,Loai);
+    public List<Activity> searchActivitiesCoBan(@RequestParam("Ten") String searchTerm) {
+    	int Loai = 1;
+        if (searchTerm == null)
+        {
+        	 return repo.findByLoai(Loai); 
+        }
+        else {
+	    	String escapedTerm = searchTerm.replaceAll("([\\W])", "\\\\$1");
+	        String regex = "(?i).*" + escapedTerm + ".*";
+	        System.out.println("Searching with regex: " + regex);
+	        return repo.findByTenHoatDongRegex(regex,Loai);
+        }
     }
     
     @GetMapping("/searchLienKet")
-    public List<Activity> searchActivitiesLienKet(@RequestParam("term") String searchTerm) {
-        String escapedTerm = searchTerm.replaceAll("([\\W])", "\\\\$1");
-        String regex = "(?i).*" + escapedTerm + ".*";
-        System.out.println("Searching with regex: " + regex);
+    public List<Activity> searchActivitiesLienKet(@RequestParam("Ten") String searchTerm) {
         int Loai = 2;
-        return repo.findByTenHoatDongRegex(regex,Loai);
+        if (searchTerm == null)
+        {
+        	 return repo.findByLoai(Loai); 
+        }
+        else {
+        	 String escapedTerm = searchTerm.replaceAll("([\\W])", "\\\\$1");
+             String regex = "(?i).*" + escapedTerm + ".*";
+             System.out.println("Searching with regex: " + regex);
+             return repo.findByTenHoatDongRegex(regex,Loai);
+
+        }
+       
     }
 
 
