@@ -92,6 +92,29 @@ public class ActivityController{
         }
        
     }
+    @GetMapping("/countByMonth/{month}")
+    public ResponseEntity<Long> countActivitiesByMonth(@PathVariable("month") int month) {
+    	List<Activity> allActivities = repo.findAll();
+
+        List<Activity> filteredActivities = allActivities.stream()
+            .filter(activity -> 
+                isMonthMatch(activity.getHanCuoiDangKy(), month) ||
+                isMonthMatch(activity.getNgayBatDau(), month) ||
+                isMonthMatch(activity.getNgayKetThuc(), month)
+            )
+            .collect(Collectors.toList());
+
+        long count = filteredActivities.size();
+        
+        return ResponseEntity.ok(count);
+    }
+    
+    @GetMapping("/countall")
+    public ResponseEntity<Long> countActivities() {
+    	long count = repo.count();
+        
+        return ResponseEntity.ok(count);
+    }
 
 
 }

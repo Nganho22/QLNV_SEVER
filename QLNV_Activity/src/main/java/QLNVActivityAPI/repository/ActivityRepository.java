@@ -11,4 +11,5 @@ public interface ActivityRepository extends MongoRepository<Activity, String>  {
 	List<Activity> findByLoai(int Loai); 
 	 @Query("{ 'tenHoatDong': { $regex: ?0, $options: 'i' }, 'loai': ?1  }")
 	  List<Activity> findByTenHoatDongRegex(String regex,int Loai);
+	 
 }
