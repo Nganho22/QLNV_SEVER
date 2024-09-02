@@ -115,6 +115,11 @@ public class ActivityController{
         
         return ResponseEntity.ok(count);
     }
+    
+    @GetMapping("/Activity/{ActivityID}")
+    public Activity getActivityByID(@PathVariable("ActivityID") int ActivityID) {
+        return repo.findByActivityID(ActivityID); 
+    }
 
 
 }

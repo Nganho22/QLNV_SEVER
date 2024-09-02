@@ -17,10 +17,6 @@ public class Activity {
 
     @Field("TenHoatDong")
     private String tenHoatDong;
-
-    @Field("LoaiHoatDong")
-    private String loaiHoatDong;
-
     @Field("Point")
     private int point;
 
@@ -50,11 +46,11 @@ public class Activity {
     private int loai;
 
     // Constructor with parameters
-    public Activity(String activityID, String tenHoatDong, String loaiHoatDong, int point, String noiDung, 
+    public Activity(String activityID, String tenHoatDong, int point, String noiDung, 
                     String chiTiet, int soNguoiThamGia, int chiPhi, LocalDate hanCuoiDangKy, LocalDate ngayBatDau, LocalDate ngayKetThuc, int loai) {
         this.activityID = activityID;
         this.tenHoatDong = tenHoatDong;
-        this.loaiHoatDong = loaiHoatDong;
+
         this.point = point;
         this.noiDung = noiDung;
         this.chiTiet = chiTiet;
@@ -86,13 +82,6 @@ public class Activity {
         this.tenHoatDong = tenHoatDong;
     }
 
-    public String getLoaiHoatDong() {
-        return loaiHoatDong;
-    }
-
-    public void setLoaiHoatDong(String loaiHoatDong) {
-        this.loaiHoatDong = loaiHoatDong;
-    }
 
     public int getPoint() {
         return point;
