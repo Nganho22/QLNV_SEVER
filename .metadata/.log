@@ -2737,3 +2737,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-03 20:58:03.613
 !MESSAGE Classpath changed for project: QLNV_Activity
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-09-03 20:59:22.899
+!MESSAGE Classpath changed for project: QLNV_Profile
