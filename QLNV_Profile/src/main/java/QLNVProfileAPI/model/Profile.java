@@ -57,10 +57,12 @@ public class Profile {
 
     @Column(name = "IMAGE")
     private String Image;
-
+    
+    @Column(name = "tenPhong")
+    private String TenPhong;
     public Profile(String phongID, int empID, String role, String hoTen, String email, String tenTaiKhoan, String matKhau,
                    String gioiTinh, String soDienThoai, String cccd, String stk, Float luong,
-                   Integer diemThuong, Integer tinhTrang, String diaChi, String image) {
+                   Integer diemThuong, Integer tinhTrang, String diaChi, String image, String tenPhong) {
         this.PhongID = phongID;
         this.EmpID = empID;
         this.Role = role;
@@ -77,6 +79,7 @@ public class Profile {
         this.TinhTrang = tinhTrang;
         this.DiaChi = diaChi;
         this.Image = image;
+        this.TenPhong = tenPhong;
     }
 
     public Profile() {}
@@ -208,5 +211,13 @@ public class Profile {
 
     public void setImage(String image) {
         this.Image = image;
+    }
+    
+    public String getTenPhong() {
+        return TenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.TenPhong = tenPhong;
     }
 }
