@@ -1,0 +1,9 @@
+package QLNVdbsAPI.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import QLNVdbsAPI.model.Database;
+
+
+public interface DatabaseRepository extends MongoRepository<Database, String>{
+
+}

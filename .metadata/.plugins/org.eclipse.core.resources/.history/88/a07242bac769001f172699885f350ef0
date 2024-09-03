@@ -1,0 +1,7 @@
+package QLNVProfileAPI.repository;
+import com.example.qlnvprofile.model.Profile;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProfileRepository extends JpaRepository<Profile, Integer> {
+    // Custom query methods can be defined here if needed
+}

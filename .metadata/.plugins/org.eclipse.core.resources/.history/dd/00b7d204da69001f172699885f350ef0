@@ -1,0 +1,216 @@
+package QLNVProfileAPI.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
+@Entity
+@Table(name = "Profile")
+public class Profile {
+
+    @Id
+//    @Column(name = "EmpID")
+    private int EmpID;
+
+//    @Column(name = "PhongID")
+    private String PhongID;
+
+//    @Column(name = "Role")
+    private String Role;
+
+//   @Column(name = "HoTen")
+    private String HoTen;
+
+//    @Column(name = "Email")
+    private String Email;
+
+//    @Column(name = "TenTaiKhoan")
+    private String TenTaiKhoan;
+
+//    @Column(name = "MatKhau")
+    private String MatKhau;
+
+//    @Column(name = "GioiTinh")
+    private String GioiTinh;
+
+//    @Column(name = "SoDienThoai")
+    private String SoDienThoai;
+
+//    @Column(name = "CCCD")
+    private String CCCD;
+
+//    @Column(name = "STK")
+    private String STK;
+
+//    @Column(name = "Luong")
+    private Float Luong;
+
+//    @Column(name = "DiemThuong")
+    private int DiemThuong;
+
+//    @Column(name = "TinhTrang", columnDefinition = "INT DEFAULT 1")
+    private Integer TinhTrang;
+
+//    @Column(name = "DiaChi")
+    private String DiaChi;
+
+    @Column(name = "Image")
+    private String Image;
+
+
+
+    public Profile(String phongID, String role, String hoTen, String email, String tenTaiKhoan, String matKhau,
+                   String gioiTinh, String soDienThoai, String cccd, String stk, Float luong,
+                   Integer diemThuong, Integer tinhTrang, String diaChi, String image) {
+        this.PhongID = phongID;
+        this.Role = role;
+        this.HoTen = hoTen;
+        this.Email = email;
+        this.TenTaiKhoan = tenTaiKhoan;
+        this.MatKhau = matKhau;
+        this.GioiTinh = gioiTinh;
+        this.SoDienThoai = soDienThoai;
+        this.CCCD = cccd;
+        this.STK = stk;
+        this.Luong = luong;
+        this.DiemThuong = diemThuong;
+        this.TinhTrang = tinhTrang;
+        this.DiaChi = diaChi;
+        this.Image = image;
+    }
+
+    public Profile() {}
+
+    // Getters and Setters
+    public Integer getEmpID() {
+        return EmpID;
+    }
+
+    public void setEmpID(Integer empID) {
+        this.EmpID = empID;
+    }
+
+    public String getPhongID() {
+        return PhongID;
+    }
+
+    public void setPhongID(String phongID) {
+        this.PhongID = phongID;
+    }
+
+
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String role) {
+        this.Role = role;
+    }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.HoTen = hoTen;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        this.Email = email;
+    }
+
+    public String getTenTaiKhoan() {
+        return TenTaiKhoan;
+    }
+
+    public void setTenTaiKhoan(String tenTaiKhoan) {
+        this.TenTaiKhoan = tenTaiKhoan;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.MatKhau = matKhau;
+    }
+
+    public String getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.GioiTinh = gioiTinh;
+    }
+
+    public String getSoDienThoai() {
+        return SoDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.SoDienThoai = soDienThoai;
+    }
+
+    public String getCccd() {
+        return CCCD;
+    }
+
+    public void setCccd(String cccd) {
+        this.CCCD = cccd;
+    }
+
+    public String getStk() {
+        return STK;
+    }
+
+    public void setStk(String stk) {
+        this.STK = stk;
+    }
+
+    public Float getLuong() {
+        return Luong;
+    }
+
+    public void setLuong(Float luong) {
+        this.Luong = luong;
+    }
+
+    public Integer getDiemThuong() {
+        return DiemThuong;
+    }
+
+    public void setDiemThuong(Integer diemThuong) {
+        this.DiemThuong = diemThuong;
+    }
+
+    public Integer getTinhTrang() {
+        return TinhTrang;
+    }
+
+    public void setTinhTrang(Integer tinhTrang) {
+        this.TinhTrang = tinhTrang;
+    }
+
+    public String getDiaChi() {
+        return DiaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.DiaChi = diaChi;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        this.Image = image;
+    }
+}
