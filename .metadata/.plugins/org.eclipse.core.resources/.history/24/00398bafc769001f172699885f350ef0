@@ -1,5 +1,0 @@
-package QLNVProfileAPI.repository;
-
-public interface ProfileRepository {
-
-}

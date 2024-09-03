@@ -1,5 +1,0 @@
-package QLNVActivityAPI.repository;
-
-public interface ActivityRepository {
-
-}

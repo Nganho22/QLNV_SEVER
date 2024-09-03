@@ -1,5 +1,0 @@
-package QLNVdbsAPI.repository;
-
-public interface DatabaseRepository {
-
-}
