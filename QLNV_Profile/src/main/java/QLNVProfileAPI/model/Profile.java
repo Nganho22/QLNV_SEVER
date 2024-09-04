@@ -58,7 +58,6 @@ public class Profile {
     @Column(name = "IMAGE")
     private String Image;
     
-    @Column(name = "tenPhong")
     private String TenPhong;
     public Profile(String phongID, int empID, String role, String hoTen, String email, String tenTaiKhoan, String matKhau,
                    String gioiTinh, String soDienThoai, String cccd, String stk, Float luong,
