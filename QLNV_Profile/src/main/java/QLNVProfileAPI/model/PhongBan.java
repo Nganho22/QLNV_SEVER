@@ -1,4 +1,4 @@
-/*package QLNVProfileAPI.model;
+package QLNVProfileAPI.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,9 +22,10 @@ public class PhongBan {
     private int soThanhVien;
 
     // Constructors, getters, and setters
-    public PhongBan() {}
+    public PhongBan() {super();}
 
     public PhongBan(String phongID, String tenPhong, int quanLyID, int soThanhVien) {
+    	super();
         this.phongID = phongID;
         this.tenPhong = tenPhong;
         this.quanLyID = quanLyID;
@@ -62,4 +63,4 @@ public class PhongBan {
     public void setSoThanhVien(int soThanhVien) {
         this.soThanhVien = soThanhVien;
     }
-}*/
+}

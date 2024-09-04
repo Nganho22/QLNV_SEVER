@@ -1,11 +1,13 @@
 package QLNVProfileAPI.controller;
 
-import QLNVProfileAPI.model.Profile;
+import QLNVProfileAPI.model.PhongBan;
+import QLNVProfileAPI.model.*;
 
 import QLNVProfileAPI.service.ProfileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +24,11 @@ public class ProfileController {
     @GetMapping("/")
     public List<Profile> getAllProfiles() {
         return profileService.getAllProfiles();
+    }
+    
+    @GetMapping("/PhongBan/{phongID}")
+    public PhongBan getPhongBanByID(@PathVariable("phongID") String phongID) {
+        return profileService.getPhongBanByPhongID(phongID);
     }
     
     @GetMapping("/getActiveProfile")
