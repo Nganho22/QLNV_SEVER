@@ -80,6 +80,36 @@ public class ProfileService {
                 return phongBan;
             });
         }
+        
+        @SuppressWarnings("deprecation")
+        public CheckInout getCurrentTimeSheetByEmpID(int empID) {
+            String checkInoutSql = "SELECT * FROM Check_inout WHERE EmpID = ? AND Date_checkin = CURDATE()";
+            List<CheckInout> results = jdbcTemplate.query(checkInoutSql, new Object[]{empID}, (rs, rowNum) -> {
+                CheckInout checkInout = new CheckInout();
+                checkInout.setStt(rs.getInt("STT"));
+                checkInout.setEmpID(rs.getInt("EmpID"));
+                checkInout.setDateCheckin(rs.getDate("Date_checkin"));
+                checkInout.setTimeCheckin(rs.getTime("Time_checkin"));
+                checkInout.setTimeCheckout(rs.getTime("Time_checkout"));
+                checkInout.setOvertime(rs.getInt("Overtime"));
+                checkInout.setLate(rs.getInt("Late"));
+                checkInout.setWorkFromHome(rs.getInt("WorkFromHome"));
+                checkInout.setNghi(rs.getInt("Nghi"));
+                return checkInout;
+            });
+            return results.isEmpty() ? null : results.get(0);
+        }
+        
+        @SuppressWarnings("deprecation")
+        public int updateCheckInTime(int stt) {
+            String updateSql = "UPDATE Check_inout " +
+                               "SET Time_checkin = CURTIME(), " +
+                               "Late = CASE WHEN CURTIME() > '08:00:00' THEN 1 ELSE 0 END " +
+                               "WHERE STT = ?";
+
+            int rowsUpdated = jdbcTemplate.update(updateSql, stt);
+            return rowsUpdated > 0 ? 1 : 0;
+        }
 
         
         

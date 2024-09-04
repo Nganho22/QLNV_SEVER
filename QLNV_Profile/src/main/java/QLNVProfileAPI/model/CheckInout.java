@@ -14,10 +14,10 @@ public class CheckInout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STT")
-    private Integer stt;
+    private int stt;
 
     @Column(name = "EmpID")
-    private Integer empID;
+    private int empID;
 
     @Column(name = "Date_checkin")
     private java.sql.Date dateCheckin;
@@ -45,7 +45,7 @@ public class CheckInout {
         super();
     }
 
-    public CheckInout(Integer stt, Integer empID, java.sql.Date dateCheckin, java.sql.Time timeCheckin,
+    public CheckInout(int stt, int empID, java.sql.Date dateCheckin, java.sql.Time timeCheckin,
                       java.sql.Time timeCheckout, Integer overtime, Integer late,
                       Integer workFromHome, Integer nghi) {
         super();
@@ -61,19 +61,19 @@ public class CheckInout {
     }
 
     // Getters and Setters
-    public Integer getStt() {
+    public int getStt() {
         return stt;
     }
 
-    public void setStt(Integer stt) {
+    public void setStt(int stt) {
         this.stt = stt;
     }
 
-    public Integer getEmpID() {
+    public int getEmpID() {
         return empID;
     }
 
-    public void setEmpID(Integer empID) {
+    public void setEmpID(int empID) {
         this.empID = empID;
     }
 
