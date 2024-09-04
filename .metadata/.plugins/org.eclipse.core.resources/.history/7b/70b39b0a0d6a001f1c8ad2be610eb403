@@ -1,0 +1,5 @@
+package QLNVProfileAPI.repository;
+
+public interface PhongBanRepository {
+
+}

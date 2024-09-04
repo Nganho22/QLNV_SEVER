@@ -1,0 +1,58 @@
+package com.example.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+
+@Entity
+@Table(name = "PhongBan")
+public class PhongBan {
+
+    @Id
+    @Column(name = "PhongID", nullable = false, length = 3)
+    private String phongID;
+
+    @Column(name = "TenPhong", length = 50)
+    private String tenPhong;
+
+    @Column(name = "QuanLyID")
+    private Integer quanLyID;
+
+    @Column(name = "SoThanhVien")
+    private Integer soThanhVien;
+
+    // Getters and Setters
+
+    public String getPhongID() {
+        return phongID;
+    }
+
+    public void setPhongID(String phongID) {
+        this.phongID = phongID;
+    }
+
+    public String getTenPhong() {
+        return tenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.tenPhong = tenPhong;
+    }
+
+    public Integer getQuanLyID() {
+        return quanLyID;
+    }
+
+    public void setQuanLyID(Integer quanLyID) {
+        this.quanLyID = quanLyID;
+    }
+
+    public Integer getSoThanhVien() {
+        return soThanhVien;
+    }
+
+    public void setSoThanhVien(Integer soThanhVien) {
+        this.soThanhVien = soThanhVien;
+    }
+}

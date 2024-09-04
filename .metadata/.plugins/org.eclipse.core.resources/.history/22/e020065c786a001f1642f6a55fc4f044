@@ -1,0 +1,67 @@
+package QLNVProfileAPI.service;
+
+import QLNVProfileAPI.model.Profile;
+import QLNVProfileAPI.model.PhongBan;
+import QLNVProfileAPI.repository.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ProfileService {
+
+    @Autowired
+    private ProfileRepository profileRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public List<Profile> getAllProfiles() {
+        return profileRepository.findAll();
+    }
+
+    public Optional<Profile> getProfileById(Integer id) {
+        return profileRepository.findById(id);
+    }
+
+    public Profile saveProfile(Profile profile) {
+        return profileRepository.save(profile);
+    }
+
+    public void deleteProfile(Integer id) {
+        profileRepository.deleteById(id);
+    }
+
+    public Profile getActiveProfile(String tenTaiKhoan, String matKhau, int tinhTrang) {
+        return profileRepository.findActiveProfile(tenTaiKhoan, matKhau, tinhTrang);
+    }
+
+    public String getTenPhongByPhongID(String phongID) {
+        String phongBanSql = "SELECT TenPhong FROM PhongBan WHERE PhongID = ?";
+        return jdbcTemplate.queryForObject(phongBanSql, new Object[]{phongID}, String.class);
+    }
+
+    public PhongBan getPhongBanByPhongID(String phongID) {
+        String phongBanSql = "SELECT * FROM PhongBan WHERE PhongID = ?";
+        return jdbcTemplate.queryForObject(phongBanSql, new Object[]{phongID}, new PhongBanRowMapper());
+    }
+
+    // RowMapper để ánh xạ kết quả ResultSet vào đối tượng PhongBan
+    private static class PhongBanRowMapper implements RowMapper<PhongBan> {
+        @Override
+        public PhongBan mapRow(ResultSet rs, int rowNum) throws SQLException {
+            PhongBan phongBan = new PhongBan();
+            phongBan.setPhongID(rs.getString("PhongID"));
+            phongBan.setTenPhong(rs.getString("TenPhong"));
+            phongBan.setQuanLyID(rs.getInt("QuanLyID"));
+            phongBan.setSoThanhVien(rs.getInt("SoThanhVien"));
+            return phongBan;
+        }
+    }
+}

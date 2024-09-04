@@ -1,0 +1,35 @@
+package QLNVProfileAPI.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+
+@Entity
+@Table(name = "PhongBan")
+public class PhongBan {
+
+    @Id
+    @Column(name = "PhongID")
+    private int phongID;
+
+    @Column(name = "TenPhong")
+    private String tenPhong;
+
+    // Getters and Setters
+    public int getPhongID() {
+        return phongID;
+    }
+
+    public void setPhongID(int phongID) {
+        this.phongID = phongID;
+    }
+
+    public String getTenPhong() {
+        return tenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.tenPhong = tenPhong;
+    }
+}

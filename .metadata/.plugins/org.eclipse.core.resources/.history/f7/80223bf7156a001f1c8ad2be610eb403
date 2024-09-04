@@ -1,0 +1,66 @@
+package QLNVProfileAPI.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+
+@Entity
+@Table(name = "PhongBan")
+public class PhongBan {
+	
+	@Id
+	@Column(name = "PHONGID")
+	private String PhongID;
+
+	@Column(name = "TENPHONG")
+	private String TenPhong;
+
+	@Column(name = "QUANLYID")
+	private int QuanLyID;
+
+	@Column(name = "SOTHANHVIEN")
+	private int SoThanhVien;
+
+
+    public PhongBan(String phongID, String tenPhong, int quanLyID, int soThanhVien) {
+        this.PhongID = phongID;
+        this.TenPhong = tenPhong;
+        this.QuanLyID = quanLyID;
+        this.SoThanhVien = soThanhVien;
+    }
+
+    public PhongBan() {}
+
+    public String getPhongID() {
+        return PhongID;
+    }
+
+    public void setPhongID(String phongID) {
+        this.PhongID = phongID;
+    }
+
+    public String getTenPhong() {
+        return TenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.TenPhong = tenPhong;
+    }
+
+    public Integer getQuanLyID() {
+        return QuanLyID;
+    }
+
+    public void setQuanLyID(int quanLyID) {
+        this.QuanLyID = quanLyID;
+    }
+
+    public Integer getSoThanhVien() {
+        return SoThanhVien;
+    }
+
+    public void setSoThanhVien(int soThanhVien) {
+        this.SoThanhVien = soThanhVien;
+    }
+}
