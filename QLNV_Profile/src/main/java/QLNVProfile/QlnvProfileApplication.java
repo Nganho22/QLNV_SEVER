@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @EntityScan(basePackages = "QLNVProfileAPI.model")
 @ComponentScan(basePackages = {"QLNVProfileAPI", "QLNVProfileAPI.controller", "QLNVProfileAPI.service"})
 public class QlnvProfileApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(QlnvProfileApplication.class, args);
     }

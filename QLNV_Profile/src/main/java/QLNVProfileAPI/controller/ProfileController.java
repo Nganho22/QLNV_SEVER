@@ -21,6 +21,7 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
+
     @GetMapping("/")
     public List<Profile> getAllProfiles() {
         return profileService.getAllProfiles();
@@ -29,6 +30,11 @@ public class ProfileController {
     @GetMapping("/PhongBan/{phongID}")
     public PhongBan getPhongBanByID(@PathVariable("phongID") String phongID) {
         return profileService.getPhongBanByPhongID(phongID);
+    }
+    
+    @GetMapping("/PhongBan/")
+    public List<PhongBan> getAllPhongBan() {
+        return profileService.getAllPhongBan();
     }
     
     @GetMapping("/getActiveProfile")

@@ -44,8 +44,7 @@ public class ProfileService {
     
     public Profile getActiveProfile(String tenTaiKhoan, String matKhau, int tinhTrang) {
         return profileRepository.findActiveProfile(tenTaiKhoan, matKhau, tinhTrang);
-    }
-    
+    }  
 
         @Autowired
         private JdbcTemplate jdbcTemplate;
@@ -62,6 +61,18 @@ public class ProfileService {
             String phongBanSql = "SELECT * FROM PhongBan WHERE PhongID = ?";
             return jdbcTemplate.queryForObject(phongBanSql, new Object[]{phongID}, (rs, rowNum) -> {
                 final PhongBan phongBan = new PhongBan();
+                phongBan.setPhongID(rs.getString("PhongID"));
+                phongBan.setTenPhong(rs.getString("TenPhong"));
+                phongBan.setQuanLyID(rs.getInt("QuanLyID"));
+                phongBan.setSoThanhVien(rs.getInt("SoThanhVien"));
+                return phongBan;
+            });
+        }
+        
+        public List<PhongBan> getAllPhongBan() {
+            String phongBanSql = "SELECT * FROM PhongBan";
+            return jdbcTemplate.query(phongBanSql, (rs, rowNum) -> {
+                PhongBan phongBan = new PhongBan();
                 phongBan.setPhongID(rs.getString("PhongID"));
                 phongBan.setTenPhong(rs.getString("TenPhong"));
                 phongBan.setQuanLyID(rs.getInt("QuanLyID"));
