@@ -9,7 +9,6 @@ import jakarta.persistence.JoinColumn;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "password_resets")
 public class PasswordResets {
 
     @Id

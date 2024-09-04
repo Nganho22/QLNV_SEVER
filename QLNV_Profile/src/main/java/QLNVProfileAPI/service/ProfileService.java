@@ -2,7 +2,8 @@
 package QLNVProfileAPI.service;
 
 import QLNVProfileAPI.model.Profile;
-import QLNVProfileAPI.model.*;
+import QLNVProfileAPI.model.PhongBan;
+import QLNVProfileAPI.model.CheckInout;
 import QLNVProfileAPI.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
