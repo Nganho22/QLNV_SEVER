@@ -11,212 +11,212 @@ public class Profile {
 
     @Id
     @Column(name = "EMPID")
-    private int EmpID;
+    private int empid;
 
     @Column(name = "PHONGID")
-    private String PhongID;
+    private String phongid;
 
     @Column(name = "ROLE")
-    private String Role;
+    private String role;
 
     @Column(name = "HOTEN")
-    private String HoTen;
+    private String hoten;
 
     @Column(name = "EMAIL")
-    private String Email;
+    private String email;
 
     @Column(name = "TENTAIKHOAN")
-    private String TenTaiKhoan;
+    private String tentaikhoan;
 
     @Column(name = "MATKHAU")
-    private String MatKhau;
+    private String matkhau;
 
     @Column(name = "GIOITINH")
-    private String GioiTinh;
+    private String gioitinh;
 
     @Column(name = "SODIENTHOAI")
-    private String SoDienThoai;
+    private String sodienthoai;
 
     @Column(name = "CCCD")
-    private String CCCD;
+    private String cccd;
 
     @Column(name = "STK")
-    private String STK;
+    private String stk;
 
     @Column(name = "LUONG")
-    private Float Luong;
+    private Float luong;
 
     @Column(name = "DIEMTHUONG", columnDefinition = "INT DEFAULT 0")
-    private Integer DiemThuong;  // Changed to Integer
+    private Integer diemthuong;  // Changed to Integer
 
     @Column(name = "TINHTRANG", columnDefinition = "INT DEFAULT 1")
-    private Integer TinhTrang;  // Changed to Integer
+    private Integer tinhtrang;  // Changed to Integer
 
     @Column(name = "DIACHI")
-    private String DiaChi;
+    private String diachi;
 
     @Column(name = "IMAGE")
-    private String Image;
+    private String image;
     
-    private String TenPhong;
+    private String tenphong;
     public Profile(String phongID, int empID, String role, String hoTen, String email, String tenTaiKhoan, String matKhau,
                    String gioiTinh, String soDienThoai, String cccd, String stk, Float luong,
                    Integer diemThuong, Integer tinhTrang, String diaChi, String image, String tenPhong) {
-        this.PhongID = phongID;
-        this.EmpID = empID;
-        this.Role = role;
-        this.HoTen = hoTen;
-        this.Email = email;
-        this.TenTaiKhoan = tenTaiKhoan;
-        this.MatKhau = matKhau;
-        this.GioiTinh = gioiTinh;
-        this.SoDienThoai = soDienThoai;
-        this.CCCD = cccd;
-        this.STK = stk;
-        this.Luong = luong;
-        this.DiemThuong = diemThuong;
-        this.TinhTrang = tinhTrang;
-        this.DiaChi = diaChi;
-        this.Image = image;
-        this.TenPhong = tenPhong;
+        this.phongid = phongID;
+        this.empid = empID;
+        this.role = role;
+        this.hoten = hoTen;
+        this.email = email;
+        this.tentaikhoan = tenTaiKhoan;
+        this.matkhau = matKhau;
+        this.gioitinh = gioiTinh;
+        this.sodienthoai = soDienThoai;
+        this.cccd = cccd;
+        this.stk = stk;
+        this.luong = luong;
+        this.diemthuong = diemThuong;
+        this.tinhtrang = tinhTrang;
+        this.diachi = diaChi;
+        this.image = image;
+        this.tenphong = tenPhong;
     }
 
     public Profile() {}
 
     // Getters and Setters
-    public int getEmpID() {
-        return EmpID;
+    public int getempid() {
+        return empid;
     }
 
-    public void setEmpID(int empID) {
-        this.EmpID = empID;
+    public void setempid(int empID) {
+        this.empid = empID;
     }
 
-    public String getPhongID() {
-        return PhongID;
+    public String getphongid() {
+        return phongid;
     }
 
-    public void setPhongID(String phongID) {
-        this.PhongID = phongID;
+    public void setphongid(String phongID) {
+        this.phongid = phongID;
     }
 
-    public String getRole() {
-        return Role;
+    public String getrole() {
+        return role;
     }
 
-    public void setRole(String role) {
-        this.Role = role;
+    public void setrole(String role) {
+        this.role = role;
     }
 
-    public String getHoTen() {
-        return HoTen;
+    public String gethoten() {
+        return hoten;
     }
 
-    public void setHoTen(String hoTen) {
-        this.HoTen = hoTen;
+    public void sethoten(String hoTen) {
+        this.hoten = hoTen;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getemail() {
+        return email;
     }
 
-    public void setEmail(String email) {
-        this.Email = email;
+    public void setemail(String email) {
+        this.email = email;
     }
 
-    public String getTenTaiKhoan() {
-        return TenTaiKhoan;
+    public String gettentaikhoan() {
+        return tentaikhoan;
     }
 
-    public void setTenTaiKhoan(String tenTaiKhoan) {
-        this.TenTaiKhoan = tenTaiKhoan;
+    public void settentaikhoan(String tenTaiKhoan) {
+        this.tentaikhoan = tenTaiKhoan;
     }
 
-    public String getMatKhau() {
-        return MatKhau;
+    public String getmatkhau() {
+        return matkhau;
     }
 
-    public void setMatKhau(String matKhau) {
-        this.MatKhau = matKhau;
+    public void setmatkhau(String matKhau) {
+        this.matkhau = matKhau;
     }
 
-    public String getGioiTinh() {
-        return GioiTinh;
+    public String getgioitinh() {
+        return gioitinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
-        this.GioiTinh = gioiTinh;
+    public void setgioitinh(String gioiTinh) {
+        this.gioitinh = gioiTinh;
     }
 
-    public String getSoDienThoai() {
-        return SoDienThoai;
+    public String getsodienthoai() {
+        return sodienthoai;
     }
 
-    public void setSoDienThoai(String soDienThoai) {
-        this.SoDienThoai = soDienThoai;
+    public void setsodienthoai(String soDienThoai) {
+        this.sodienthoai = soDienThoai;
     }
 
-    public String getCccd() {
-        return CCCD;
+    public String getcccd() {
+        return cccd;
     }
 
-    public void setCccd(String cccd) {
-        this.CCCD = cccd;
+    public void setcccd(String cccd) {
+        this.cccd = cccd;
     }
 
-    public String getStk() {
-        return STK;
+    public String getstk() {
+        return stk;
     }
 
-    public void setStk(String stk) {
-        this.STK = stk;
+    public void setstk(String stk) {
+        this.stk = stk;
     }
 
-    public Float getLuong() {
-        return Luong;
+    public Float getluong() {
+        return luong;
     }
 
-    public void setLuong(Float luong) {
-        this.Luong = luong;
+    public void setluong(Float luong) {
+        this.luong = luong;
     }
 
-    public Integer getDiemThuong() {
-        return DiemThuong;
+    public Integer getdiemthuong() {
+        return diemthuong;
     }
 
-    public void setDiemThuong(Integer diemThuong) {
-        this.DiemThuong = diemThuong;
+    public void setdiemthuong(Integer diemThuong) {
+        this.diemthuong = diemThuong;
     }
 
-    public Integer getTinhTrang() {
-        return TinhTrang;
+    public Integer gettinhtrang() {
+        return tinhtrang;
     }
 
-    public void setTinhTrang(Integer tinhTrang) {
-        this.TinhTrang = tinhTrang;
+    public void settinhtrang(Integer tinhTrang) {
+        this.tinhtrang = tinhTrang;
     }
 
-    public String getDiaChi() {
-        return DiaChi;
+    public String getdiachi() {
+        return diachi;
     }
 
-    public void setDiaChi(String diaChi) {
-        this.DiaChi = diaChi;
+    public void setdiachi(String diaChi) {
+        this.diachi = diaChi;
     }
 
-    public String getImage() {
-        return Image;
+    public String getimage() {
+        return image;
     }
 
-    public void setImage(String image) {
-        this.Image = image;
+    public void setimage(String image) {
+        this.image = image;
     }
     
-    public String getTenPhong() {
-        return TenPhong;
+    public String gettenphong() {
+        return tenphong;
     }
 
-    public void setTenPhong(String tenPhong) {
-        this.TenPhong = tenPhong;
+    public void settenphong(String tenPhong) {
+        this.tenphong = tenPhong;
     }
 }

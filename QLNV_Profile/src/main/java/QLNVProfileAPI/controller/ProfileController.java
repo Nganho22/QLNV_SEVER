@@ -54,8 +54,8 @@ public class ProfileController {
                                     @RequestParam String matKhau) {
         Profile profile = profileService.getActiveProfile(tenTaiKhoan, matKhau, 1);
         
-        if (profile != null && profile.getPhongID() != null) {
-        	profile.setTenPhong(profileService.getTenPhongByPhongID(profile.getPhongID()));
+        if (profile != null && profile.getphongid() != null) {
+        	profile.settenphong(profileService.getTenPhongByPhongID(profile.getphongid()));
         }
         return profile;
     }

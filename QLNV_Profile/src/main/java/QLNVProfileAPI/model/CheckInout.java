@@ -15,28 +15,28 @@ public class CheckInout {
     @Column(name = "STT")
     private int stt;
 
-    @Column(name = "EmpID")
-    private int empID;
+    @Column(name = "EMPID")
+    private int empid;
 
-    @Column(name = "Date_checkin")
-    private java.sql.Date dateCheckin;
+    @Column(name = "DATE_CHECKIN")
+    private java.sql.Date datecheckin;
 
-    @Column(name = "Time_checkin")
-    private java.sql.Time timeCheckin;
+    @Column(name = "TIME_CHECKIN")
+    private java.sql.Time timecheckin;
 
-    @Column(name = "Time_checkout")
-    private java.sql.Time timeCheckout;
+    @Column(name = "TIME_CHECKOUT")
+    private java.sql.Time timecheckout;
 
-    @Column(name = "Overtime")
+    @Column(name = "OVERTIME")
     private Integer overtime;
 
-    @Column(name = "Late")
+    @Column(name = "LATE")
     private Integer late;
 
-    @Column(name = "WorkFromHome")
-    private Integer workFromHome;
+    @Column(name = "WORKFROMHOME")
+    private Integer workfromhome;
 
-    @Column(name = "Nghi")
+    @Column(name = "NGHI")
     private Integer nghi;
 
     // Constructors
@@ -49,18 +49,18 @@ public class CheckInout {
                       Integer workFromHome, Integer nghi) {
         super();
         this.stt = stt;
-        this.empID = empID;
-        this.dateCheckin = dateCheckin;
-        this.timeCheckin = timeCheckin;
-        this.timeCheckout = timeCheckout;
+        this.empid = empID;
+        this.datecheckin = dateCheckin;
+        this.timecheckin = timeCheckin;
+        this.timecheckout = timeCheckout;
         this.overtime = overtime;
         this.late = late;
-        this.workFromHome = workFromHome;
+        this.workfromhome = workFromHome;
         this.nghi = nghi;
     }
 
     // Getters and Setters
-    public int getStt() {
+    public int getstt() {
         return stt;
     }
 
@@ -69,35 +69,35 @@ public class CheckInout {
     }
 
     public int getEmpID() {
-        return empID;
+        return empid;
     }
 
     public void setEmpID(int empID) {
-        this.empID = empID;
+        this.empid = empID;
     }
 
     public java.sql.Date getDateCheckin() {
-        return dateCheckin;
+        return datecheckin;
     }
 
     public void setDateCheckin(java.sql.Date dateCheckin) {
-        this.dateCheckin = dateCheckin;
+        this.datecheckin = dateCheckin;
     }
 
     public java.sql.Time getTimeCheckin() {
-        return timeCheckin;
+        return timecheckin;
     }
 
     public void setTimeCheckin(java.sql.Time timeCheckin) {
-        this.timeCheckin = timeCheckin;
+        this.timecheckin = timeCheckin;
     }
 
     public java.sql.Time getTimeCheckout() {
-        return timeCheckout;
+        return timecheckout;
     }
 
     public void setTimeCheckout(java.sql.Time timeCheckout) {
-        this.timeCheckout = timeCheckout;
+        this.timecheckout = timeCheckout;
     }
 
     public Integer getOvertime() {
@@ -117,11 +117,11 @@ public class CheckInout {
     }
 
     public Integer getWorkFromHome() {
-        return workFromHome;
+        return workfromhome;
     }
 
     public void setWorkFromHome(Integer workFromHome) {
-        this.workFromHome = workFromHome;
+        this.workfromhome = workFromHome;
     }
 
     public Integer getNghi() {

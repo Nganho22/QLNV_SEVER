@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProfileRepository extends JpaRepository <Profile, Integer>{
 	
-	@Query("SELECT p FROM Profile p WHERE p.TenTaiKhoan = :tenTaiKhoan AND p.MatKhau = :matKhau AND p.TinhTrang = :tinhTrang")
+	@Query("SELECT p FROM Profile p WHERE p.tentaikhoan = :tenTaiKhoan AND p.matkhau = :matKhau AND p.tinhtrang = :tinhTrang")
 	Profile findActiveProfile(@Param("tenTaiKhoan") String tenTaiKhoan, @Param("matKhau") String matKhau, @Param("tinhTrang") int tinhTrang);
 }
 

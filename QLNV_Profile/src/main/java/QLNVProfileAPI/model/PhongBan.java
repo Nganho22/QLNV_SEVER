@@ -9,58 +9,58 @@ import jakarta.persistence.Column;
 public class PhongBan {
 
     @Id
-    @Column(name = "PhongID")
-    private String phongID;
+    @Column(name = "PHONGID")
+    private String phongid;
 
-    @Column(name = "TenPhong")
-    private String tenPhong;
+    @Column(name = "TENPHONG")
+    private String tenphong;
 
-    @Column(name = "QuanLyID")
-    private int quanLyID;
+    @Column(name = "QUANLYID")
+    private int quanlyid;
 
-    @Column(name = "SoThanhVien")
-    private int soThanhVien;
+    @Column(name = "SOTHANHVIEN")
+    private int sothanhvien;
 
     // Constructors, getters, and setters
     public PhongBan() {super();}
 
     public PhongBan(String phongID, String tenPhong, int quanLyID, int soThanhVien) {
     	super();
-        this.phongID = phongID;
-        this.tenPhong = tenPhong;
-        this.quanLyID = quanLyID;
-        this.soThanhVien = soThanhVien;
+        this.phongid = phongID;
+        this.tenphong = tenPhong;
+        this.quanlyid = quanLyID;
+        this.sothanhvien = soThanhVien;
     }
 
-    public String getPhongID() {
-        return phongID;
+    public String getphongid() {
+        return phongid;
     }
 
-    public void setPhongID(String phongID) {
-        this.phongID = phongID;
+    public void setphongid(String phongID) {
+        this.phongid = phongID;
     }
 
-    public String getTenPhong() {
-        return tenPhong;
+    public String gettenphong() {
+        return tenphong;
     }
 
-    public void setTenPhong(String tenPhong) {
-        this.tenPhong = tenPhong;
+    public void settenphong(String tenPhong) {
+        this.tenphong = tenPhong;
     }
 
-    public int getQuanLyID() {
-        return quanLyID;
+    public int getquanlyid() {
+        return quanlyid;
     }
 
-    public void setQuanLyID(int quanLyID) {
-        this.quanLyID = quanLyID;
+    public void setquanlyid(int quanLyID) {
+        this.quanlyid = quanLyID;
     }
 
-    public int getSoThanhVien() {
-        return soThanhVien;
+    public int getsothanhvien() {
+        return sothanhvien;
     }
 
-    public void setSoThanhVien(int soThanhVien) {
-        this.soThanhVien = soThanhVien;
+    public void setsothanhvien(int soThanhVien) {
+        this.sothanhvien = soThanhVien;
     }
 }

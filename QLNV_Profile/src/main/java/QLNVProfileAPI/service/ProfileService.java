@@ -51,21 +51,21 @@ public class ProfileService {
         private JdbcTemplate jdbcTemplate;
         
         public String getTenPhongByPhongID(String phongID) {
-            String phongBanSql = "SELECT TenPhong FROM PhongBan WHERE PhongID = ?";
+            String phongBanSql = "SELECT tenphong FROM PhongBan WHERE phongid = ?";
             Map<String, Object> phongBan = jdbcTemplate.queryForMap(phongBanSql, phongID);
-            return (String) phongBan.get("TenPhong");
+            return (String) phongBan.get("tenphong");
         }
         
        
         @SuppressWarnings("deprecation")
 		public PhongBan getPhongBanByPhongID(String phongID) {
-            String phongBanSql = "SELECT * FROM PhongBan WHERE PhongID = ?";
+            String phongBanSql = "SELECT * FROM PhongBan WHERE phongid = ?";
             return jdbcTemplate.queryForObject(phongBanSql, new Object[]{phongID}, (rs, rowNum) -> {
                 final PhongBan phongBan = new PhongBan();
-                phongBan.setPhongID(rs.getString("PhongID"));
-                phongBan.setTenPhong(rs.getString("TenPhong"));
-                phongBan.setQuanLyID(rs.getInt("QuanLyID"));
-                phongBan.setSoThanhVien(rs.getInt("SoThanhVien"));
+                phongBan.setphongid(rs.getString("phongid"));
+                phongBan.settenphong(rs.getString("tenphong"));
+                phongBan.setquanlyid(rs.getInt("quanlyid"));
+                phongBan.setsothanhvien(rs.getInt("sothanhvien"));
                 return phongBan;
             });
         }
@@ -74,28 +74,28 @@ public class ProfileService {
             String phongBanSql = "SELECT * FROM PhongBan";
             return jdbcTemplate.query(phongBanSql, (rs, rowNum) -> {
                 PhongBan phongBan = new PhongBan();
-                phongBan.setPhongID(rs.getString("PhongID"));
-                phongBan.setTenPhong(rs.getString("TenPhong"));
-                phongBan.setQuanLyID(rs.getInt("QuanLyID"));
-                phongBan.setSoThanhVien(rs.getInt("SoThanhVien"));
+                phongBan.setphongid(rs.getString("phongid"));
+                phongBan.settenphong(rs.getString("tenphong"));
+                phongBan.setquanlyid(rs.getInt("quanlyid"));
+                phongBan.setsothanhvien(rs.getInt("sothanhvien"));
                 return phongBan;
             });
         }
         
         @SuppressWarnings("deprecation")
         public CheckInout getCurrentTimeSheetByEmpID(int empID) {
-            String checkInoutSql = "SELECT * FROM Check_inout WHERE EmpID = ? AND Date_checkin = CURDATE()";
+            String checkInoutSql = "SELECT * FROM Check_inout WHERE empid = ? AND date_checkin = CURDATE()";
             List<CheckInout> results = jdbcTemplate.query(checkInoutSql, new Object[]{empID}, (rs, rowNum) -> {
                 CheckInout checkInout = new CheckInout();
-                checkInout.setStt(rs.getInt("STT"));
-                checkInout.setEmpID(rs.getInt("EmpID"));
-                checkInout.setDateCheckin(rs.getDate("Date_checkin"));
-                checkInout.setTimeCheckin(rs.getTime("Time_checkin"));
-                checkInout.setTimeCheckout(rs.getTime("Time_checkout"));
-                checkInout.setOvertime(rs.getInt("Overtime"));
-                checkInout.setLate(rs.getInt("Late"));
-                checkInout.setWorkFromHome(rs.getInt("WorkFromHome"));
-                checkInout.setNghi(rs.getInt("Nghi"));
+                checkInout.setStt(rs.getInt("stt"));
+                checkInout.setEmpID(rs.getInt("empid"));
+                checkInout.setDateCheckin(rs.getDate("date_checkin"));
+                checkInout.setTimeCheckin(rs.getTime("time_checkin"));
+                checkInout.setTimeCheckout(rs.getTime("time_checkout"));
+                checkInout.setOvertime(rs.getInt("overtime"));
+                checkInout.setLate(rs.getInt("late"));
+                checkInout.setWorkFromHome(rs.getInt("workfromhome"));
+                checkInout.setNghi(rs.getInt("nghi"));
                 return checkInout;
             });
             return results.isEmpty() ? null : results.get(0);
@@ -103,10 +103,10 @@ public class ProfileService {
         
         @SuppressWarnings("deprecation")
         public int updateCheckInTime(int stt) {
-            String updateSql = "UPDATE Check_inout " +
-                               "SET Time_checkin = CURTIME(), " +
-                               "Late = CASE WHEN CURTIME() > '08:00:00' THEN 1 ELSE 0 END " +
-                               "WHERE STT = ?";
+            String updateSql = "UPDATE check_inout " +
+                               "SET time_checkin = CURTIME(), " +
+                               "late = CASE WHEN CURTIME() > '08:00:00' THEN 1 ELSE 0 END " +
+                               "WHERE stt = ?";
 
             int rowsUpdated = jdbcTemplate.update(updateSql, stt);
             return rowsUpdated > 0 ? 1 : 0;
