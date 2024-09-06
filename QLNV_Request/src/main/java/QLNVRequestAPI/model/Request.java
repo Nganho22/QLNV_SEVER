@@ -79,115 +79,115 @@ public class Request {
 	}
 
     // Getters and Setters
-	public Integer getRequestID() {
+	public Integer getrequestid() {
 		return requestid;
 	}
 	
-    public void setRequestID(Integer requestID) {
+    public void setrequestid(Integer requestID) {
     	this.requestid = requestID;
     }
 
-    public int getEmpID() {
+    public int getempid() {
         return empid;
     }
 
-    public void setEmpID(int empID) {
+    public void setempid(int empID) {
     	this.empid = empID;
     }
 
-    public String getNguoiGui() {
+    public String getnguoigui() {
         return nguoigui;
     }
 
-    public void setNguoiGui(String nguoiGui) {
+    public void setnguoigui(String nguoiGui) {
     	this.nguoigui = nguoiGui;
     }
 
-    public String getLoai() {
+    public String getloai() {
         return loai;
     }
 
-    public void setLoai(String loai) {
+    public void setloai(String loai) {
         this.loai = loai;
     }
 
-    public String getTieuDe() {
+    public String gettieude() {
         return tieude;
     }
 
-    public void setTieuDe(String tieuDe) {
+    public void settieude(String tieuDe) {
     	this.tieude = tieuDe;
     }
 
-    public java.sql.Date getNgayGui() {
+    public java.sql.Date getngaygui() {
         return ngaygui;
     }
 
-    public void setNgayGui(java.sql.Date ngayGui) {
+    public void setngaygui(java.sql.Date ngayGui) {
     	this.ngaygui = ngayGui;
     }
 
-    public java.sql.Date getNgayXuLy() {
+    public java.sql.Date getngayxuly() {
         return ngayxuly;
     }
 
-    public void setNgayXuLy(java.sql.Date ngayXuLy) {
+    public void setngayxuly(java.sql.Date ngayXuLy) {
     	this.ngayxuly = ngayXuLy;
     }
 
-    public java.sql.Date getNgayChon() {
+    public java.sql.Date getngaychon() {
         return ngaychon;
     }
 
-    public void setNgayChon(java.sql.Date ngayChon) {
+    public void setngaychon(java.sql.Date ngayChon) {
     	this.ngaychon = ngayChon;
     }
 
-    public Integer getTrangThai() {
+    public Integer gettrangthai() {
         return trangthai;
     }
 
-    public void setTrangThai(Integer trangThai) {
+    public void settrangthai(Integer trangThai) {
     	this.trangthai = trangThai;
     }
 
-    public String getNoiDung() {
+    public String getnoidung() {
         return noidung;
     }
 
-    public void setNoiDung(String noiDung) {
+    public void setnoidung(String noiDung) {
     	this.noidung = noiDung;
     }
 
-    public String getPhanHoi() {
+    public String getphanhoi() {
         return phanhoi;
     }
 
-    public void setPhanHoi(String phanHoi) {
+    public void setphanhoi(String phanHoi) {
     	this.phanhoi = phanHoi;
     }
 
-    public Integer getTime_sheetID() {
+    public Integer gettime_sheetid() {
         return time_sheetid;
     }
 
-    public void setTime_sheetID(Integer time_sheetID) {
+    public void settime_sheetid(Integer time_sheetID) {
     	this.time_sheetid = time_sheetID;
     }
 
-    public String getUp_TinhTrang_Timesheet() {
+    public String getup_tinhtrang_timesheet() {
         return up_tinhtrang_timesheet;
     }
 
-    public void setUp_TinhTrang_Timesheet(String up_TinhTrang_Timesheet) {
+    public void setup_tinhtrang_timesheet(String up_TinhTrang_Timesheet) {
     	this.up_tinhtrang_timesheet = up_TinhTrang_Timesheet;
     }
 
-    public Integer getUp_ThoiGian_Timesheet() {
+    public Integer getup_thoigian_timesheet() {
         return up_thoigian_timesheet;
     }
 
-    public void setUp_ThoiGian_Timesheet(Integer up_ThoiGian_Timesheet) {
+    public void setup_thoigian_timesheet(Integer up_ThoiGian_Timesheet) {
     	this.up_thoigian_timesheet = up_ThoiGian_Timesheet;
     }
 }
