@@ -64,47 +64,47 @@ public class CheckInout {
         return stt;
     }
 
-    public void setStt(int stt) {
+    public void setstt(int stt) {
         this.stt = stt;
     }
 
-    public int getEmpID() {
+    public int getempID() {
         return empid;
     }
 
-    public void setEmpID(int empID) {
+    public void setempid(int empID) {
         this.empid = empID;
     }
 
-    public java.sql.Date getDateCheckin() {
+    public java.sql.Date getdatecheckin() {
         return datecheckin;
     }
 
-    public void setDateCheckin(java.sql.Date dateCheckin) {
+    public void setdatecheckin(java.sql.Date dateCheckin) {
         this.datecheckin = dateCheckin;
     }
 
-    public java.sql.Time getTimeCheckin() {
+    public java.sql.Time gettimecheckin() {
         return timecheckin;
     }
 
-    public void setTimeCheckin(java.sql.Time timeCheckin) {
+    public void settimecheckin(java.sql.Time timeCheckin) {
         this.timecheckin = timeCheckin;
     }
 
-    public java.sql.Time getTimeCheckout() {
+    public java.sql.Time gettimecheckout() {
         return timecheckout;
     }
 
-    public void setTimeCheckout(java.sql.Time timeCheckout) {
+    public void settimecheckout(java.sql.Time timeCheckout) {
         this.timecheckout = timeCheckout;
     }
 
-    public Integer getOvertime() {
+    public Integer getovertime() {
         return overtime;
     }
 
-    public void setOvertime(Integer overtime) {
+    public void setovertime(Integer overtime) {
         this.overtime = overtime;
     }
 
@@ -112,23 +112,23 @@ public class CheckInout {
         return late;
     }
 
-    public void setLate(Integer late) {
+    public void setlate(Integer late) {
         this.late = late;
     }
 
-    public Integer getWorkFromHome() {
+    public Integer getworkfromhome() {
         return workfromhome;
     }
 
-    public void setWorkFromHome(Integer workFromHome) {
+    public void setworkfromhome(Integer workFromHome) {
         this.workfromhome = workFromHome;
     }
 
-    public Integer getNghi() {
+    public Integer getnghi() {
         return nghi;
     }
 
-    public void setNghi(Integer nghi) {
+    public void setnghi(Integer nghi) {
         this.nghi = nghi;
     }
 }

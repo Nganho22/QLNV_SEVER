@@ -91,15 +91,15 @@ public class ProfileService {
             String checkInoutSql = "SELECT * FROM Check_inout WHERE empid = ? AND date_checkin = CURDATE()";
             List<CheckInout> results = jdbcTemplate.query(checkInoutSql, new Object[]{empID}, (rs, rowNum) -> {
                 CheckInout checkInout = new CheckInout();
-                checkInout.setStt(rs.getInt("stt"));
-                checkInout.setEmpID(rs.getInt("empid"));
-                checkInout.setDateCheckin(rs.getDate("date_checkin"));
-                checkInout.setTimeCheckin(rs.getTime("time_checkin"));
-                checkInout.setTimeCheckout(rs.getTime("time_checkout"));
-                checkInout.setOvertime(rs.getInt("overtime"));
-                checkInout.setLate(rs.getInt("late"));
-                checkInout.setWorkFromHome(rs.getInt("workfromhome"));
-                checkInout.setNghi(rs.getInt("nghi"));
+                checkInout.setstt(rs.getInt("stt"));
+                checkInout.setempid(rs.getInt("empid"));
+                checkInout.setdatecheckin(rs.getDate("date_checkin"));
+                checkInout.settimecheckin(rs.getTime("time_checkin"));
+                checkInout.settimecheckout(rs.getTime("time_checkout"));
+                checkInout.setovertime(rs.getInt("overtime"));
+                checkInout.setlate(rs.getInt("late"));
+                checkInout.setworkfromhome(rs.getInt("workfromhome"));
+                checkInout.setnghi(rs.getInt("nghi"));
                 return checkInout;
             });
             return results.isEmpty() ? null : results.get(0);
