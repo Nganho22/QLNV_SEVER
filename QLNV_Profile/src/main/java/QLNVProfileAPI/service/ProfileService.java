@@ -45,7 +45,11 @@ public class ProfileService {
     
     public Profile getActiveProfile(String tenTaiKhoan, String matKhau, int tinhTrang) {
         return profileRepository.findActiveProfile(tenTaiKhoan, matKhau, tinhTrang);
-    }  
+    }
+    
+    public Profile findProfileByEmpID(int empID) {
+        return profileRepository.findProfileByID(empID);
+    } 
 
         @Autowired
         private JdbcTemplate jdbcTemplate;

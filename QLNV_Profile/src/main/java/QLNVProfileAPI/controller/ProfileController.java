@@ -29,6 +29,15 @@ public class ProfileController {
         return profileService.getAllProfiles();
     }
     
+    @GetMapping("/findByID/{empid}")
+    public Profile getActiveByID(@PathVariable("empID") int empID) {
+        Profile profile = profileService.findProfileByEmpID(empID);
+        
+        if (profile != null && profile.getphongid() != null) {
+        	profile.settenphong(profileService.getTenPhongByPhongID(profile.getphongid()));
+        }
+        return profile;
+    }
     @GetMapping("/PhongBan/{phongID}")
     public PhongBan getPhongBanByID(@PathVariable("phongID") String phongID) {
         return profileService.getPhongBanByPhongID(phongID);
