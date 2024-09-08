@@ -14,7 +14,7 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
 	@Query("SELECT p FROM Profile p WHERE p.tentaikhoan = :tenTaiKhoan AND p.matkhau = :matKhau AND p.tinhtrang = :tinhTrang")
 	Profile findActiveProfile(@Param("tenTaiKhoan") String tenTaiKhoan, @Param("matKhau") String matKhau, @Param("tinhTrang") int tinhTrang);
 	
-	@Query("SELECT p FROM Profile p WHERE p.empid = :empID")
-    Profile findProfileByID(@Param("empID") int empID);
+	@Query("SELECT p FROM Profile p WHERE p.empid = :empid")
+    Profile findProfileByID(@Param("empid") int empid);
 }
 

@@ -106,6 +106,28 @@ public class ProfileService {
         }
         
         @SuppressWarnings("deprecation")
+        public List<CheckInout> getListTimeSheetsByEmpID(int empID) {
+            String checkInoutSql = "SELECT * FROM Check_inout WHERE empid = ?";
+            
+            List<CheckInout> results = jdbcTemplate.query(checkInoutSql, new Object[]{empID}, (rs, rowNum) -> {
+            	 CheckInout checkInout = new CheckInout();
+                 checkInout.setstt(rs.getInt("stt"));
+                 checkInout.setempid(rs.getInt("empid"));
+                 checkInout.setdatecheckin(rs.getDate("date_checkin"));
+                 checkInout.settimecheckin(rs.getTime("time_checkin"));
+                 checkInout.settimecheckout(rs.getTime("time_checkout"));
+                 checkInout.setovertime(rs.getInt("overtime"));
+                 checkInout.setlate(rs.getInt("late"));
+                 checkInout.setworkfromhome(rs.getInt("workfromhome"));
+                 checkInout.setnghi(rs.getInt("nghi"));
+                 return checkInout;
+            });
+
+            // Trả về danh sách kết quả
+            return results;
+        }
+        
+        @SuppressWarnings("deprecation")
         public int updateCheckInTime(int stt) {
             String updateSql = "UPDATE check_inout " +
                                "SET time_checkin = CURTIME(), " +

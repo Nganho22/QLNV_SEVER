@@ -29,7 +29,7 @@ public class ProfileController {
         return profileService.getAllProfiles();
     }
     
-    @GetMapping("/findByID/{empid}")
+    @GetMapping("/findByID/{empID}")
     public Profile getActiveByID(@PathVariable("empID") int empID) {
         Profile profile = profileService.findProfileByEmpID(empID);
         
@@ -38,6 +38,7 @@ public class ProfileController {
         }
         return profile;
     }
+    
     @GetMapping("/PhongBan/{phongID}")
     public PhongBan getPhongBanByID(@PathVariable("phongID") String phongID) {
         return profileService.getPhongBanByPhongID(phongID);
@@ -51,6 +52,11 @@ public class ProfileController {
     @GetMapping("/CurrentTimesheet/{empID}")
     public CheckInout getCurrentTimesheet(@PathVariable("empID") int empID) {
         return profileService.getCurrentTimeSheetByEmpID(empID);
+    }
+    
+    @GetMapping("/GetTimesheetsByID/{empID}")
+    public List<CheckInout> getTimesheetsByID(@PathVariable("empID") int empID) {
+        return profileService.getListTimeSheetsByEmpID(empID);
     }
     
     @PutMapping("/UpdateCheckin/{stt}")
