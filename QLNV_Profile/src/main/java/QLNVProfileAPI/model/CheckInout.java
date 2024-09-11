@@ -68,7 +68,7 @@ public class CheckInout {
         this.stt = stt;
     }
 
-    public int getempID() {
+    public int getempid() {
         return empid;
     }
 

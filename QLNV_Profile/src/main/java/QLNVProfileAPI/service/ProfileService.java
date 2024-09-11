@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 
 
@@ -60,7 +61,52 @@ public class ProfileService {
             return (String) phongBan.get("tenphong");
         }
         
+        public int getCountNghiID(int empID) {
+            String phongBanSql = "SELECT COUNT(nghi) as total_nghi FROM Check_inout WHERE empid = ? AND nghi = 1";
+            
+            try {
+               
+                Map<String, Object> phongBan = jdbcTemplate.queryForMap(phongBanSql, empID);
+                
+                
+                if (phongBan.get("total_nghi") != null) {
+                    return ((Number) phongBan.get("total_nghi")).intValue(); // Safe casting to int
+                } else {
+                    return 0; 
+                }
+            } catch (EmptyResultDataAccessException e) {
+                return 0; 
+            }
+        }
+        
+        public int getCountLateID(int empID) {
+            String phongBanSql = "SELECT COUNT(late) as total_late FROM Check_inout WHERE empid = ? AND late = 1";
+            
+            try {
+               
+                Map<String, Object> phongBan = jdbcTemplate.queryForMap(phongBanSql, empID);
+                
+                
+                if (phongBan.get("total_late") != null) {
+                    return ((Number) phongBan.get("total_late")).intValue();
+                } else {
+                    return 0; 
+                }
+            } catch (EmptyResultDataAccessException e) {
+                return 0;
+            }
+        }
        
+        public List<Map<String, Object>> getTotalPointsByMonth(int nguoinhan) {
+            String sql = "SELECT MONTH(date) AS month, SUM(point) AS total_points " +
+                         "FROM Felicitation " +
+                         "WHERE nguoinhan = ? " +
+                         "GROUP BY MONTH(date) " +
+                         "ORDER BY MONTH(date)";
+
+            return jdbcTemplate.queryForList(sql, nguoinhan);
+        }
+        
         @SuppressWarnings("deprecation")
 		public PhongBan getPhongBanByPhongID(String phongID) {
             String phongBanSql = "SELECT * FROM PhongBan WHERE phongid = ?";
@@ -136,6 +182,10 @@ public class ProfileService {
 
             int rowsUpdated = jdbcTemplate.update(updateSql, stt);
             return rowsUpdated > 0 ? 1 : 0;
+        }
+        
+        public List<Profile> getProfilesByPhongIDAndHoteen(int empid, String hoten, int limit, int offset) {
+            return profileRepository.findProfilesByPhongIDAndHoteen(empid, hoten, limit, offset);
         }
 
         

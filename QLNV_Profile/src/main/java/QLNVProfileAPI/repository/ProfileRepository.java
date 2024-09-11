@@ -1,5 +1,8 @@
 package QLNVProfileAPI.repository;
 import QLNVProfileAPI.model.Profile;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,5 +19,16 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
 	
 	@Query("SELECT p FROM Profile p WHERE p.empid = :empid")
     Profile findProfileByID(@Param("empid") int empid);
+	
+	@Query(value = "SELECT *" +
+            "FROM Profile " +
+            "WHERE phongid = (SELECT phongid FROM Profile WHERE empid = :empid) " +
+            "AND hoten LIKE %:hoten% AND empid <> :empid " +
+            "LIMIT :limit OFFSET :offset", 
+    nativeQuery = true)
+	List<Profile> findProfilesByPhongIDAndHoteen(@Param("empid") int empid, 
+                                           @Param("hoten") String hoten, 
+                                           @Param("limit") int limit, 
+                                           @Param("offset") int offset);
 }
 

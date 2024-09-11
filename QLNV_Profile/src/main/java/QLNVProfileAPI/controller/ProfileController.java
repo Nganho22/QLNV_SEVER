@@ -5,6 +5,7 @@ import QLNVProfileAPI.model.*;
 
 import QLNVProfileAPI.service.ProfileService;
 
+import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 @RestController
 @RequestMapping("/apiProfile")
@@ -54,6 +59,35 @@ public class ProfileController {
         return profileService.getCurrentTimeSheetByEmpID(empID);
     }
     
+    @GetMapping("/CountNghiByID/{empID}")
+    public ResponseEntity<Integer> getCountNghiByID(@PathVariable("empID") int empID) {
+        try {
+            int count = profileService.getCountNghiID(empID);
+            return ResponseEntity.ok(count); // Return the count if found
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.ok(0); // If no result, return 0
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(0); // Handle any unexpected errors
+        }
+    }
+    
+    @GetMapping("/CountLateByID/{empID}")
+    public ResponseEntity<Integer> getCountLateByID(@PathVariable("empID") int empID) {
+        try {
+            int count = profileService.getCountLateID(empID);
+            return ResponseEntity.ok(count); // Return the count if found
+        } catch (EmptyResultDataAccessException e) {
+            return ResponseEntity.ok(0); // If no result, return 0
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(0); // Handle any unexpected errors
+        }
+    }
+    @GetMapping("/totalPointsByMonth/{empID}")
+    public ResponseEntity<List<Map<String, Object>>> getTotalPointsByMonth(@PathVariable("empID") int empID) {
+        List<Map<String, Object>> data = profileService.getTotalPointsByMonth(empID);
+        return ResponseEntity.ok(data);
+    }
+    
     @GetMapping("/GetTimesheetsByID/{empID}")
     public List<CheckInout> getTimesheetsByID(@PathVariable("empID") int empID) {
         return profileService.getListTimeSheetsByEmpID(empID);
@@ -74,4 +108,14 @@ public class ProfileController {
         }
         return profile;
     }
+    
+    @GetMapping("/getProfileNVByQL")
+    public List<Profile> getProfiles(
+            @RequestParam int empid, 
+            @RequestParam String hoten, 
+            @RequestParam int limit, 
+            @RequestParam int offset) {
+        return profileService.getProfilesByPhongIDAndHoteen(empid, hoten, limit, offset);
+    }
+    
 }
