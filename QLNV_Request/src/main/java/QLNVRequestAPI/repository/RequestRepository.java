@@ -34,4 +34,6 @@ public interface RequestRepository extends JpaRepository <Request, Integer> {
 
     @Query("SELECT COUNT(r) FROM Request r WHERE r.empid = :empId AND r.trangthai = 0")
     int countPendingRequests(@Param("empId") int empId);
+    
+    
 }

@@ -63,4 +63,16 @@ public class RequestController {
     public int countPendingRequests(@RequestParam int empID) {
         return requestService.countPendingRequests(empID);
     }
+    
+    @GetMapping("/timesheets/{empID}")
+    public List<Timesheet> getTimeSheetsByEmpID(@PathVariable int empID) {
+        return requestService.getTimeSheetsByEmpID(empID);
+    }
+    
+    @GetMapping("/timesheetsID/{timeSheetId}")
+    public Timesheet getTimeSheetByID(@PathVariable int timeSheetId) {
+        return requestService.getTimeSheetByID(timeSheetId);
+    }
+
+    
 }

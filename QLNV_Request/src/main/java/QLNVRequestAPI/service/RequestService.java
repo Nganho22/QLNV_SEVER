@@ -1,6 +1,7 @@
 package QLNVRequestAPI.service;
 
 import QLNVRequestAPI.model.Request;
+import QLNVRequestAPI.model.Timesheet;
 import QLNVRequestAPI.repository.RequestRepository;
 import QLNVRequestAPI.model.*;
 
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 
 @Service
@@ -52,5 +54,56 @@ public class RequestService {
     public int countPendingRequests(int empId) {
         return requestRepository.countPendingRequests(empId);
     }
+    
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @SuppressWarnings("deprecation")
+    public List<Timesheet> getTimeSheetsByEmpID(int empID) {
+        String sql = "SELECT * FROM Time_sheet WHERE empid = ? AND trangthai = 'Chưa hoàn thành'";
+
+        List<Timesheet> results = jdbcTemplate.query(sql, new Object[]{empID}, (rs, rowNum) -> {
+            Timesheet timesheet = new Timesheet();
+            timesheet.settimesheetid(rs.getInt("time_sheetid"));
+            timesheet.setprojectid(rs.getInt("projectid"));
+            timesheet.setempid(rs.getInt("empid"));
+            timesheet.settenduan(rs.getString("tenduan"));
+            timesheet.setnguoigui(rs.getString("nguoigui"));
+            timesheet.setPhongBan(rs.getString("phongban"));
+            timesheet.setTrangThai(rs.getString("trangthai"));
+            timesheet.setsogiothuchien(rs.getInt("sogiothuchien"));
+            timesheet.setngaygiao(rs.getDate("ngaygiao"));
+            timesheet.sethanchot(rs.getDate("hanchot"));
+            timesheet.setdiemthuong(rs.getInt("diemthuong"));
+            timesheet.settre(rs.getInt("tre"));
+            timesheet.setnoidung(rs.getString("noidung"));
+            return timesheet;
+        });
+        return results;
+    }
+    
+    @SuppressWarnings("deprecation")
+    public Timesheet getTimeSheetByID(int timeSheetId) {
+        String sql = "SELECT * FROM Time_sheet WHERE time_sheetid = ?";
+
+        return jdbcTemplate.queryForObject(sql, new Object[]{timeSheetId}, (rs, rowNum) -> {
+            Timesheet timesheet = new Timesheet();
+            timesheet.settimesheetid(rs.getInt("time_sheetid"));
+            timesheet.setprojectid(rs.getInt("projectid"));
+            timesheet.setempid(rs.getInt("empid"));
+            timesheet.settenduan(rs.getString("tenduan"));
+            timesheet.setnguoigui(rs.getString("nguoigui"));
+            timesheet.setPhongBan(rs.getString("phongban"));
+            timesheet.setTrangThai(rs.getString("trangthai"));
+            timesheet.setsogiothuchien(rs.getInt("sogiothuchien"));
+            timesheet.setngaygiao(rs.getDate("ngaygiao"));
+            timesheet.sethanchot(rs.getDate("hanchot"));
+            timesheet.setdiemthuong(rs.getInt("diemthuong"));
+            timesheet.settre(rs.getInt("tre"));
+            timesheet.setnoidung(rs.getString("noidung"));
+            return timesheet;
+        });
+    }
+
     
 }
