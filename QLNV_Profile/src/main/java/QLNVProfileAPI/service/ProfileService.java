@@ -201,6 +201,10 @@ public class ProfileService {
                 return false;
             }
         }
+        
+        public int countProfilesInSamePhongBan(int empID, String hoTen) {
+            return profileRepository.countProfilesInSamePhongBan(empID, hoTen);
+        }
 
         
         

@@ -138,4 +138,13 @@ public class ProfileController {
         }
     }
     
+    @GetMapping("/countProfilesInSamePhongBan")
+    public ResponseEntity<Integer> countProfilesInSamePhongBan(
+            @RequestParam int empID, 
+            @RequestParam String hoTen) {
+        
+        int count = profileService.countProfilesInSamePhongBan(empID, hoTen);
+        return ResponseEntity.ok(count);
+    }
+    
 }
