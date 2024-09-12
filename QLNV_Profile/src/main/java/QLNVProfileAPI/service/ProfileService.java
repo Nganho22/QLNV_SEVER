@@ -187,6 +187,20 @@ public class ProfileService {
         public List<Profile> getProfilesByPhongIDAndHoteen(int empid, String hoten, int limit, int offset) {
             return profileRepository.findProfilesByPhongIDAndHoteen(empid, hoten, limit, offset);
         }
+        
+        public boolean updateProfile(int empID, String gioiTinh, String cccd, String sdt, String stk, String diaChi, String image, String newPass) {
+            try {
+                if (newPass != null && !newPass.isEmpty()) {
+                    profileRepository.updateProfileWithPassword(empID, gioiTinh, cccd, sdt, stk, diaChi, image, newPass);
+                } else {
+                    profileRepository.updateProfileWithoutPassword(empID, gioiTinh, cccd, sdt, stk, diaChi, image);
+                }
+                return true;
+            } catch (Exception e) {
+                
+                return false;
+            }
+        }
 
         
         

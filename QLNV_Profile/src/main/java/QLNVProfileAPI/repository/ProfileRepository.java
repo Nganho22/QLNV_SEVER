@@ -1,9 +1,11 @@
 package QLNVProfileAPI.repository;
 import QLNVProfileAPI.model.Profile;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.jpa.repository.Query;
@@ -30,5 +32,31 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
                                            @Param("hoten") String hoten, 
                                            @Param("limit") int limit, 
                                            @Param("offset") int offset);
+	
+	@Modifying
+    @Transactional
+    @Query("UPDATE Profile p SET p.gioitinh = :gioitinh, p.cccd = :cccd, p.sodienthoai = :sdt, p.stk = :stk, p.diachi = :diachi, p.image = :image, p.matkhau = :newPass WHERE p.empid = :empID")
+    void updateProfileWithPassword(@Param("empID") int empID,
+                                   @Param("gioitinh") String gioitinh,
+                                   @Param("cccd") String cccd,
+                                   @Param("sdt") String sdt,
+                                   @Param("stk") String stk,
+                                   @Param("diachi") String diachi,
+                                   @Param("image") String image,
+                                   @Param("newPass") String newPass);
+
+    // Update profile without password
+    @Modifying
+    @Transactional
+    @Query("UPDATE Profile p SET p.gioitinh = :gioitinh, p.cccd = :cccd, p.sodienthoai = :sdt, p.stk = :stk, p.diachi = :diachi, p.image = :image WHERE p.empid = :empID")
+    void updateProfileWithoutPassword(@Param("empID") int empID,
+                                      @Param("gioitinh") String gioitinh,
+                                      @Param("cccd") String cccd,
+                                      @Param("sdt") String sdt,
+                                      @Param("stk") String stk,
+                                      @Param("diachi") String diachi,
+                                      @Param("image") String image);
+
+
 }
 

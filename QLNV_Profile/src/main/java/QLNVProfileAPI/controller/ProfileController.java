@@ -118,4 +118,24 @@ public class ProfileController {
         return profileService.getProfilesByPhongIDAndHoteen(empid, hoten, limit, offset);
     }
     
+    @PutMapping("/updateProfile")
+    public ResponseEntity<String> updateProfile(
+            @RequestParam int empID, 
+            @RequestParam String gioiTinh, 
+            @RequestParam String cccd, 
+            @RequestParam String sdt, 
+            @RequestParam String stk, 
+            @RequestParam String diaChi, 
+            @RequestParam String image, 
+            @RequestParam(required = false) String newPass) {
+        
+        boolean isUpdated = profileService.updateProfile(empID, gioiTinh, cccd, sdt, stk, diaChi, image, newPass);
+        
+        if (isUpdated) {
+            return ResponseEntity.ok("Profile updated successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.SC_SERVER_ERROR).body("Failed to update profile.");
+        }
+    }
+    
 }
