@@ -65,7 +65,7 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
             "    FROM Profile sub " +
             "    WHERE sub.empid = :empid) " +
             "AND p.hoten LIKE %:hoten% AND p.empid <> :empid")
-    int countProfilesInSamePhongBan(@Param("empid") int empid, @Param("hoten") String hoten);
+    int countProfilesBySearch(@Param("empid") int empid, @Param("hoten") String hoten);
     
     @Query(value = "SELECT COUNT(p.empid) as total " +
             "FROM Profile p " +
@@ -74,7 +74,7 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
             "    FROM Profile sub " +
             "    WHERE sub.empid = :empid) " +
             "AND p.empid <> :empid")
-    int countProfilesInSamePhongBan2(@Param("empid") int empid);
+    int countProfilesInSamePhongBan(@Param("empid") int empid);
 
 }
 

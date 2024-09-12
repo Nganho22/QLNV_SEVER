@@ -138,20 +138,20 @@ public class ProfileController {
         }
     }
     
-    @GetMapping("/countProfilesInSamePhongBan")
-    public ResponseEntity<Integer> countProfilesInSamePhongBan(
+    @GetMapping("/countProfilesBySearch")
+    public ResponseEntity<Integer> countProfilesBySearch(
             @RequestParam int empID, 
             @RequestParam String hoTen) {
         
-        int count = profileService.countProfilesInSamePhongBan(empID, hoTen);
+        int count = profileService.countProfilesBySearch(empID, hoTen);
         return ResponseEntity.ok(count);
     }
     
-    @GetMapping("/countProfilesInSamePhongBan2")
-    public ResponseEntity<Integer> countProfilesInSamePhongBan2(
+    @GetMapping("/countProfilesInSamePhongBan")
+    public ResponseEntity<Integer> countProfilesInSamePhongBan(
             @RequestParam int empID) {
         
-        int count = profileService.countProfilesInSamePhongBan2(empID);
+        int count = profileService.countProfilesInSamePhongBan(empID);
         return ResponseEntity.ok(count);
     }
     

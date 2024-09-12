@@ -202,12 +202,12 @@ public class ProfileService {
             }
         }
         
-        public int countProfilesInSamePhongBan(int empID, String hoTen) {
-            return profileRepository.countProfilesInSamePhongBan(empID, hoTen);
+        public int countProfilesBySearch(int empID, String hoTen) {
+            return profileRepository.countProfilesBySearch(empID, hoTen);
         }
 
-        public int countProfilesInSamePhongBan2(int empID) {
-            return profileRepository.countProfilesInSamePhongBan2(empID);
+        public int countProfilesInSamePhongBan(int empID) {
+            return profileRepository.countProfilesInSamePhongBan(empID);
         }
         
         
