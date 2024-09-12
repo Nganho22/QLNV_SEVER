@@ -5,6 +5,7 @@ import QLNVRequestAPI.model.Timesheet;
 import QLNVRequestAPI.repository.RequestRepository;
 import QLNVRequestAPI.model.*;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,22 @@ public class RequestService {
         });
     }
 
+    public boolean createRequest(int empId, String nguoiGui, String loai, String tieuDe, Date ngayGui, Date ngayChon, String noiDung) {
+    	try {
+    		requestRepository.createRequest(empId, nguoiGui, loai, tieuDe, ngayGui, ngayChon, noiDung); 
+    		return true;
+    	} catch (Exception e) {
+    		return false;
+    	}
+    }
     
+    public boolean createTimeSheetRequest(int empId, String nguoiGui, String loai, String tieuDe, java.sql.Date ngayGui, String noiDung, Integer timeSheetID, String trangThai, Integer newUpThoiGianTimesheet) {
+        try {
+            requestRepository.createTimeSheetRequest(empId, nguoiGui, loai, tieuDe, ngayGui, noiDung, timeSheetID, trangThai, newUpThoiGianTimesheet);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
     
 }

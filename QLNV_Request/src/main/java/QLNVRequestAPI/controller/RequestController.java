@@ -4,9 +4,11 @@ import QLNVRequestAPI.model.*;
 import QLNVRequestAPI.model.Request;
 import QLNVRequestAPI.service.RequestService;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,5 +76,41 @@ public class RequestController {
         return requestService.getTimeSheetByID(timeSheetId);
     }
 
+    @PostMapping("/createRequest")
+    public ResponseEntity<String> createRequest(@RequestParam int empID,
+                                                @RequestParam String nguoiGui,
+                                                @RequestParam String loai,
+                                                @RequestParam String tieuDe,
+                                                @RequestParam Date ngayGui,
+                                                @RequestParam Date ngayChon,
+                                                @RequestParam String noiDung) {
+    	boolean result = requestService.createRequest(empID, nguoiGui, loai, tieuDe, ngayGui, ngayChon, noiDung);
+    	if (result) {
+            return ResponseEntity.ok("Create request successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.SC_SERVER_ERROR).body("Failed to update profile.");
+        }
+    }
+    
+    @PostMapping("/createTimeSheetRequest")
+    public ResponseEntity<String> createTimeSheetRequest(
+            @RequestParam int empId,
+            @RequestParam String nguoiGui,
+            @RequestParam String loai,
+            @RequestParam String tieuDe,
+            @RequestParam Date ngayGui,
+            @RequestParam String noiDung,
+            @RequestParam Integer timeSheetID,
+            @RequestParam String trangThai,
+            @RequestParam Integer newUpThoiGianTimesheet) {
+
+        boolean result = requestService.createTimeSheetRequest(empId, nguoiGui, loai, tieuDe, ngayGui, noiDung, timeSheetID, trangThai, newUpThoiGianTimesheet);
+
+        if (result) {
+            return ResponseEntity.ok("Create request successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.SC_SERVER_ERROR).body("Failed to create request.");
+        }
+    }
     
 }
