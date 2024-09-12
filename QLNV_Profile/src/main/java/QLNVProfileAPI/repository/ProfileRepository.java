@@ -66,6 +66,15 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
             "    WHERE sub.empid = :empid) " +
             "AND p.hoten LIKE %:hoten% AND p.empid <> :empid")
     int countProfilesInSamePhongBan(@Param("empid") int empid, @Param("hoten") String hoten);
+    
+    @Query(value = "SELECT COUNT(p.empid) as total " +
+            "FROM Profile p " +
+            "WHERE p.phongid = (" +
+            "    SELECT sub.phongid " +
+            "    FROM Profile sub " +
+            "    WHERE sub.empid = :empid) " +
+            "AND p.empid <> :empid")
+    int countProfilesInSamePhongBan2(@Param("empid") int empid);
 
 }
 
