@@ -1,12 +1,20 @@
 package QLNVActivityAPI.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import QLNVActivityAPI.model.Activity;
+import QLNVActivityAPI.model.JoinActivity;
+import QLNVActivityAPI.repository.JoinActivityRepository;
 import QLNVActivityAPI.repository.ActivityRepository;
-
+import QLNVActivityAPI.service.JoinActivityService;
+import QLNVActivity.config.appConfig;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +24,10 @@ import java.util.Optional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.time.format.DateTimeFormatter;
@@ -28,13 +39,70 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/apiActivity")
 public class ActivityController{
+	 @Autowired
+	    private MongoTemplate mongoTemplate;
+	
 	@Autowired
     private ActivityRepository repo;
+
+	@Autowired
+    private JoinActivityRepository join;
+	
+    @Autowired
+    private JoinActivityService joinActivityService;
+    
+    @Autowired
+    private RestTemplate restTemplate;
+    
+    @GetMapping("/activityAndProfile/{activityID}")
+    public Map<String, Object> getActivityAndProfile(@PathVariable("activityID") int activityID) {
+        Activity activity = repo.findByActivityID(activityID);
+
+        List<JoinActivity> joinAcs = join.findByActivityID(activityID);
+
+        List<Map<String, Object>> profiles = new ArrayList<>();
+
+        for (JoinActivity joinActivity : joinAcs) {
+            int empID = joinActivity.getEmployeeID();
+
+            String profileServiceUrl = "http://localhost:9003/apiProfile/findByID/" + empID;
+            Map<String, Object> profile = restTemplate.getForObject(profileServiceUrl, Map.class);
+
+            profiles.add(profile);
+        }
+
+        Map<String, Object> combinedData = new HashMap<>();
+        combinedData.put("activity", activity); 
+        combinedData.put("profiles", profiles); 
+
+        return combinedData;
+    }
+
+
+
+
+
 
     @GetMapping("/")
     public List<Activity> getAllActivity() {
 		return repo.findAll();
 	}
+    
+    @GetMapping("/join/")
+    public List<JoinActivity> getAllJoinActivity() {
+		return join.findAll();
+	}
+    
+    @GetMapping("/join/SearchByempID/{empid}")
+    public ResponseEntity<List<Activity>> getAllJoinActivityByEmpID(@PathVariable("empid") int empid) {
+        List<Activity> activities = joinActivityService.getActivitiesByEmployeeID(empid);
+        return ResponseEntity.ok(activities);
+    }
+    @GetMapping("/join/count")
+    public ResponseEntity<Long> countJoinActivity(@RequestParam int activityID, @RequestParam int employeeID) {
+        long count = joinActivityService.countJoinActivityByActivityIDAndEmployeeID(activityID, employeeID);
+        return ResponseEntity.ok(count);
+    }
     
     @GetMapping("/month/{month}")
     public List<Activity> getActivitiesByMonth(@PathVariable("month") int month) {

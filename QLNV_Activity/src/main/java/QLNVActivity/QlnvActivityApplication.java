@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackages ="QLNVActivityAPI.repository")
-@ComponentScan(basePackages = {"QLNVActivityAPI","QLNVActivityAPI.controller","QLNVActivityAPI.model","QLNVActivityAPI.repository"})
+@ComponentScan(basePackages = {"QLNVActivityAPI","QLNVActivityAPI.controller","QLNVActivityAPI.model","QLNVActivityAPI.repository","QLNVActivity.config"})
 
 public class QlnvActivityApplication {
 

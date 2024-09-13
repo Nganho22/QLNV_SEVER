@@ -13,7 +13,7 @@ public class Activity {
     private String _id;
 
     @Field("ActivityID")
-    private String activityID;
+    private int activityID;
 
     @Field("TenHoatDong")
     private String tenHoatDong;
@@ -46,7 +46,7 @@ public class Activity {
     private int loai;
 
     // Constructor with parameters
-    public Activity(String activityID, String tenHoatDong, int point, String noiDung, 
+    public Activity(int activityID, String tenHoatDong, int point, String noiDung, 
                     String chiTiet, int soNguoiThamGia, int chiPhi, LocalDate hanCuoiDangKy, LocalDate ngayBatDau, LocalDate ngayKetThuc, int loai) {
         this.activityID = activityID;
         this.tenHoatDong = tenHoatDong;
@@ -66,11 +66,11 @@ public class Activity {
     }
 
     // Getters and Setters
-    public String getActivityID() {
+    public int getActivityID() {
         return activityID;
     }
 
-    public void setActivityID(String activityID) {
+    public void setActivityID(int activityID) {
         this.activityID = activityID;
     }
 
