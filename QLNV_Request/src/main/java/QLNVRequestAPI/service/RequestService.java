@@ -9,6 +9,7 @@ import QLNVRequestAPI.model.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,5 +165,68 @@ public class RequestService {
     
     public List<Request> getRequestsByEmpID_QL(List<Integer> empIDs) {
         return requestRepository.getRequestsByEmpID_QL(empIDs);
+    }
+    
+    public List<Request> searchRequestsByEmpID_QL(List<Integer> empIDs, String searchTerm, int limit, int offset) {
+        return requestRepository.searchRequestsByEmpID_QL(empIDs, searchTerm, limit, offset);
+    }
+
+	public int countSearchRequestsByEmpID_QL(List<Integer> empIDs, String searchTerm) {
+		return requestRepository.countSearchRequestsByEmpID_QL(empIDs, searchTerm);
+	}
+
+	public List<Map<String, Object>> filterRequestsByEmpID_QL(List<Integer> empIDs, String searchTerm, List<String> types, List<Integer> statuses, int limit, int offset) {
+        if (empIDs.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return requestRepository.filterRequestsByEmpID_QL(empIDs, searchTerm, types, statuses, limit, offset);
+    }
+
+	public int countFilterRequestsByEmpID(List<Integer> empIDs, String searchTerm, List<String> types, List<Integer> statuses) {
+        return requestRepository.countFilterRequestsByEmpID(empIDs, searchTerm, types, statuses);
+    }
+	
+	public boolean updateRequest(Integer requestID, Date ngayXuLy, int trangThai, String noiDung) {
+        try {
+            Optional<Request> optionalRequest = requestRepository.findById(requestID);
+            if (optionalRequest.isPresent()) {
+                Request request = optionalRequest.get();
+                request.setngayxuly(ngayXuLy);
+                request.settrangthai(trangThai);
+                request.setphanhoi(noiDung);
+                requestRepository.save(request);
+                return true;
+            } else {
+                return false; // Request not found
+            }
+        } catch (Exception e) {
+            // Log exception if needed
+            return false;
+        }
+    }
+
+	public boolean insertCheckInOut(CheckInOut checkInOut) {
+        String sql = "INSERT INTO Check_inout (empid, date_checkin, workfromhome, nghi) VALUES (?,?,?,?)";
+        try {
+            jdbcTemplate.update(sql, checkInOut.getempid(), checkInOut.getdatecheckin(), 
+                                checkInOut.getworkfromhome(), checkInOut.getnghi());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+	public boolean updateTimeSheet(Timesheet timeSheet) {
+        String sql = "UPDATE Time_sheet SET trangthai = ?, sogiothuchien = ?, tre = ? WHERE time_sheetid = ?";
+        try {
+            jdbcTemplate.update(sql, 
+                timeSheet.getTrangThai(), 
+                timeSheet.getsogiothuchien(), 
+                timeSheet.gettre(), 
+                timeSheet.gettimesheetid());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

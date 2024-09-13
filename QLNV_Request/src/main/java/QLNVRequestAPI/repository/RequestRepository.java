@@ -69,6 +69,7 @@ public interface RequestRepository extends JpaRepository <Request, Integer>, Req
             @Param("trangThai") String trangThai,
             @Param("newUpThoiGianTimesheet") Integer newUpThoiGianTimesheet);
 
+
 	//Map<String, Object> getRequestCountsByEmpIDs(List<Integer> empIDs);
     
 	

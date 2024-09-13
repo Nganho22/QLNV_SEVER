@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/apiRequest")
@@ -140,4 +141,75 @@ public class RequestController {
         return ResponseEntity.ok(requests);
     }
     
+    @GetMapping("/search")
+    public List<Request> searchRequestsByEmpID_QL(
+            @RequestParam List<Integer> empIDs,
+            @RequestParam String searchTerm,
+            @RequestParam int limit,
+            @RequestParam int offset) {
+
+        return requestService.searchRequestsByEmpID_QL(empIDs, searchTerm, limit, offset);
+    }
+    
+    @GetMapping("/countSearchRequests")
+    public int countSearchRequests(
+        @RequestParam List<Integer> empIDs,
+        @RequestParam String searchTerm
+    ) {
+        int total = requestService.countSearchRequestsByEmpID_QL(empIDs, searchTerm);
+        return total;
+    }
+    
+    @GetMapping("/filter")
+    public ResponseEntity<List<Map<String, Object>>> filterRequestsByEmpID_QL(
+            @RequestParam List<Integer> empIDs,
+            @RequestParam String searchTerm,
+            @RequestParam(required = false) List<String> types,
+            @RequestParam(required = false) List<Integer> statuses,
+            @RequestParam int limit,
+            @RequestParam int offset) {
+
+        List<Map<String, Object>> requests = requestService.filterRequestsByEmpID_QL(empIDs, searchTerm, types, statuses, limit, offset);
+        return ResponseEntity.ok(requests);
+    }
+    
+    @GetMapping("/countFilter")
+    public int countFilteredRequests(
+            @RequestParam List<Integer> empIDs,
+            @RequestParam String searchTerm,
+            @RequestParam List<String> types,
+            @RequestParam List<Integer> statuses) {
+        return requestService.countFilterRequestsByEmpID(empIDs, searchTerm, types, statuses);
+    }
+
+    @PutMapping("updateReq/{requestID}")
+    public ResponseEntity<String> updateRequest(
+            @PathVariable Integer requestID,
+            @RequestParam Date ngayXuLy,
+            @RequestParam int trangThai,
+            @RequestParam String noiDung) {
+
+        boolean updated = requestService.updateRequest(requestID, ngayXuLy, trangThai, noiDung);
+
+        if (updated) {
+            return ResponseEntity.ok("Request updated successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.SC_SERVER_ERROR).body("Request not found.");
+        }
+    }
+
+    @PostMapping("/checkinout")
+    public boolean insertCheckInOut(@RequestBody CheckInOut checkInOut) {
+        return requestService.insertCheckInOut(checkInOut);
+    }
+    
+    @PutMapping("/updateTimesheet/{timeSheetID}")
+    public ResponseEntity<String> updateTimeSheet(@RequestBody Timesheet timeSheet) {
+        boolean result = requestService.updateTimeSheet(timeSheet);
+        if (result) {
+            return ResponseEntity.ok("TimeSheet updated successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.SC_SERVER_ERROR).body("Failed to update TimeSheet.");
+        }
+    }
 }
