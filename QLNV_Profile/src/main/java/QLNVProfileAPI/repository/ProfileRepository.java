@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-
+import java.util.Optional;
+import java.util.Map;
 
 
 public interface ProfileRepository extends JpaRepository <Profile, Integer>{
@@ -75,6 +75,23 @@ public interface ProfileRepository extends JpaRepository <Profile, Integer>{
             "    WHERE sub.empid = :empid) " +
             "AND p.empid <> :empid")
     int countProfilesInSamePhongBan(@Param("empid") int empid);
+    
+    @Query("SELECT p.phongid FROM Profile p WHERE p.empid = :empID")
+    Optional<String> findPhongIdByEmpId(@Param("empID") int empID);
+    List<Profile> findByPhongid(String phongid);
+    
+    @Query(value = "SELECT PhongBan.phongid, PhongBan.tenphong, " +
+            "COALESCE(COUNT(CASE WHEN Check_inout.time_checkin IS NOT NULL THEN 1 END), 0) AS SoLanCheckin, " +
+            "COALESCE(COUNT(CASE WHEN Check_inout.time_checkout IS NOT NULL THEN 1 END), 0) AS SoLanCheckout " +
+            "FROM Profile " +
+            "INNER JOIN PhongBan ON Profile.phongid = PhongBan.phongid " +
+            "LEFT JOIN Check_inout ON Profile.empid = Check_inout.empid " +
+            "AND DATE(Check_inout.date_checkin) = CURDATE() " +
+            "WHERE PhongBan.phongid = (SELECT phongid FROM Profile WHERE empid = :empID) " +
+            "GROUP BY PhongBan.phongid, PhongBan.tenphong", 
+    nativeQuery = true)
+    List<Map<String, Object>> getPhongBanCheckinout(@Param("empID") int empID);
+
 
 }
 

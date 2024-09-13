@@ -155,5 +155,14 @@ public class ProfileController {
         return ResponseEntity.ok(count);
     }
     
-    
+    @GetMapping("/PhongBanStatistics/{empID}")
+    public ResponseEntity<List<Map<String, Object>>> getPhongBanStatistics(@PathVariable int empID) {
+        List<Map<String, Object>> statistics = profileService.getPhongBanStatistics(empID);
+        return ResponseEntity.ok(statistics);
+    }
+
+    @GetMapping("/PhongBanCheckinout/{empID}")
+    public List<Map<String, Object>> getPhongBanCheckinout(@PathVariable("empID") int empID) {
+        return profileService.getPhongBanCheckinout(empID);
+    }
 }

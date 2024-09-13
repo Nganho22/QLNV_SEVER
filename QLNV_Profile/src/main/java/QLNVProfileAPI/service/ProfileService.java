@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.DataAccessException;
 
 
 
-
-
-import java.util.List;
 import java.util.Optional;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -210,8 +210,37 @@ public class ProfileService {
             return profileRepository.countProfilesInSamePhongBan(empID);
         }
         
+
+        public List<Map<String, Object>> getPhongBanStatistics(int empID) {
+            Optional<String> optionalPhongId = profileRepository.findPhongIdByEmpId(empID);
+            
+            if (!optionalPhongId.isPresent()) {
+                return new ArrayList<>();
+            }
+
+            String phongID = optionalPhongId.get();
+            
+            // Lấy danh sách nhân viên cùng phòng ban
+            List<Profile> employees = profileRepository.findByPhongid(phongID);
+            
+            // Ánh xạ kết quả thành dạng Map
+            List<Map<String, Object>> result = new ArrayList<>();
+            for (Profile employee : employees) {
+                Map<String, Object> employeeData = new HashMap<>();
+                employeeData.put("empid", employee.getempid());
+                employeeData.put("hoten", employee.gethoten());
+                result.add(employeeData);
+            }
+            
+            return result;
+        }
+
+        public List<Map<String, Object>> getPhongBanCheckinout(int empID) {
+            return profileRepository.getPhongBanCheckinout(empID);
+        }
         
         
 }
+
 
 
