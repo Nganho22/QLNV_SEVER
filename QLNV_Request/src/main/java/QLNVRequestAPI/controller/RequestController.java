@@ -113,4 +113,31 @@ public class RequestController {
         }
     }
     
+    @GetMapping("/getDetailRequest/{requestID}")
+    public ResponseEntity<Request> getDetailRequest(@PathVariable Integer requestID) {
+        Request request = requestService.getDetailRequest(requestID);
+        if (request != null) {
+            return ResponseEntity.ok(request);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    @GetMapping("/profileInfo/{userId}")
+    public ResponseEntity<Map<String, Object>> getProfileInfo(@PathVariable int userId) {
+        Map<String, Object> profileData = requestService.getEmpIDsAndPhongID(userId);
+        return ResponseEntity.ok(profileData);
+    }
+    
+    @GetMapping("/counts")
+    public Map<String, Object> getRequestCountsByEmpIDs(@RequestParam List<Integer> empIDs) {
+        return requestService.getRequestCountsByEmpIDs(empIDs);
+    }
+    
+    @GetMapping("/by-emp-ids")
+    public ResponseEntity<List<Request>> getRequestsByEmpIDs(@RequestParam List<Integer> empIDs) {
+        List<Request> requests = requestService.getRequestsByEmpID_QL(empIDs);
+        return ResponseEntity.ok(requests);
+    }
+    
 }

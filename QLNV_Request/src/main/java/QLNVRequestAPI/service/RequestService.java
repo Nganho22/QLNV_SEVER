@@ -2,13 +2,17 @@ package QLNVRequestAPI.service;
 
 import QLNVRequestAPI.model.Request;
 import QLNVRequestAPI.model.Timesheet;
+import QLNVRequestAPI.model.Profile;
+
 import QLNVRequestAPI.repository.RequestRepository;
 import QLNVRequestAPI.model.*;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -124,4 +128,41 @@ public class RequestService {
         }
     }
     
+    public Request getDetailRequest(Integer requestID) {
+        Optional<Request> request = requestRepository.findById(requestID);
+        return request.orElse(null);
+    }
+
+    @SuppressWarnings("deprecation")
+    public Map<String, Object> getEmpIDsAndPhongID(int userId) {
+        String sql = "SELECT p1.phongid, p2.empid " +
+                     "FROM Profile p1 " +
+                     "LEFT JOIN Profile p2 ON p1.phongid = p2.phongid " +
+                     "WHERE p1.empid = ?";
+
+        return jdbcTemplate.query(sql, new Object[]{userId}, rs -> {
+            Map<String, Object> resultMap = new HashMap<>();
+            List<Integer> empIDs = new ArrayList<>();
+            String phongID = null;
+
+            while (rs.next()) {
+                if (phongID == null) {
+                    phongID = rs.getString("phongid");
+                }
+                empIDs.add(rs.getInt("empid"));
+            }
+
+            resultMap.put("phongID", phongID);
+            resultMap.put("empIDs", empIDs);
+            return resultMap;
+        });
+    }
+
+    public Map<String, Object> getRequestCountsByEmpIDs(List<Integer> empIDs) {
+        return requestRepository.getRequestCountsByEmpIDs(empIDs);
+    }
+    
+    public List<Request> getRequestsByEmpID_QL(List<Integer> empIDs) {
+        return requestRepository.getRequestsByEmpID_QL(empIDs);
+    }
 }

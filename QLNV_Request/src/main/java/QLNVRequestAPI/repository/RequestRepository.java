@@ -5,17 +5,20 @@ import jakarta.transaction.Transactional;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.stereotype.Repository;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface RequestRepository extends JpaRepository <Request, Integer> {
+
+
+public interface RequestRepository extends JpaRepository <Request, Integer>, RequestRepositoryCustom {
 	
 	@Query("SELECT COUNT(r) FROM Request r WHERE r.empid = :userId")
     int countTotalRequestsByEmpID(@Param("userId") int userId);
@@ -65,4 +68,9 @@ public interface RequestRepository extends JpaRepository <Request, Integer> {
             @Param("timeSheetID") Integer timeSheetID,
             @Param("trangThai") String trangThai,
             @Param("newUpThoiGianTimesheet") Integer newUpThoiGianTimesheet);
+
+	//Map<String, Object> getRequestCountsByEmpIDs(List<Integer> empIDs);
+    
+	
 }
+
