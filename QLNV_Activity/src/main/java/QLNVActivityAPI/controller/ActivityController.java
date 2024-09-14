@@ -98,11 +98,28 @@ public class ActivityController{
         List<Activity> activities = joinActivityService.getActivitiesByEmployeeID(empid);
         return ResponseEntity.ok(activities);
     }
-    @GetMapping("/join/count")
-    public ResponseEntity<Long> countJoinActivity(@RequestParam int activityID, @RequestParam int employeeID) {
-        long count = joinActivityService.countJoinActivityByActivityIDAndEmployeeID(activityID, employeeID);
+    @GetMapping("/join/countt")
+    public ResponseEntity<Long> countJoinActivity(@RequestParam("activityID") int activityID,@RequestParam("empID") int empID) {
+        long count = joinActivityService.countJoinActivityByActivityIDAndEmployeeID(activityID, empID);
         return ResponseEntity.ok(count);
     }
+    
+    @PostMapping("/join/create")
+    public ResponseEntity<JoinActivity> createJoinActivity(@RequestParam int activityID, @RequestParam int employeeID) {
+        long count = join.countByActivityIDAndEmployeeID(activityID, employeeID);
+        
+        if (count > 0) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        
+       
+        JoinActivity joinActivity = new JoinActivity(activityID, employeeID, LocalDate.now());
+
+        JoinActivity savedJoinActivity = join.save(joinActivity);
+
+        return new ResponseEntity<>(savedJoinActivity, HttpStatus.CREATED);
+    }
+
     
     @GetMapping("/month/{month}")
     public List<Activity> getActivitiesByMonth(@PathVariable("month") int month) {
