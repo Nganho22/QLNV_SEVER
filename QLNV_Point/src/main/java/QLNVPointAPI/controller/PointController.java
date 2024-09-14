@@ -22,7 +22,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 @RestController
 @RequestMapping("/apiPoint")
-public class ProfileController {
+public class PointController {
 
     @Autowired
     private PointRepository repo;

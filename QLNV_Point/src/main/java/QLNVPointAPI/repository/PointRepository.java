@@ -1,6 +1,5 @@
 package QLNVPointAPI.repository;
 import QLNVPointAPI.model.Felicitation;
-import QLNVPointAPI.model.Voucher;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
