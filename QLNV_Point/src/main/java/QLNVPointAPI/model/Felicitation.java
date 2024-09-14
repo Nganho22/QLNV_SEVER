@@ -7,12 +7,13 @@ import jakarta.persistence.Column;
 
 @Entity
 @Table(name = "Felicitation")
-public class Felicitation {
-    @Column(name = "PHONGID")
-    private String phongid;
 
-    @Column(name = "TENPHONG")
-    private String tenphong;
+public class Felicitation {
+    @Column(name = "FELICITATION")
+    private int felicitationid;
+
+    @Column(name = "POINT")
+    private int point;
 
     @Column(name = "QUANLYID")
     private int quanlyid;

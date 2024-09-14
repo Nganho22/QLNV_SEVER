@@ -12,5 +12,5 @@ public class Voucher {
     private Long id;
     private String code;
     private String brandId;
-    // getters and setters
+    // getters and setter   s
 }
