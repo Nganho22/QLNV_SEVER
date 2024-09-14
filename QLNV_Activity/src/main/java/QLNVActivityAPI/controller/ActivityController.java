@@ -104,7 +104,7 @@ public class ActivityController{
         return ResponseEntity.ok(count);
     }
     
-    @PostMapping("/join/create")
+    /*@PostMapping("/join/create")
     public ResponseEntity<JoinActivity> createJoinActivity(@RequestParam int activityID, @RequestParam int employeeID) {
         long count = join.countByActivityIDAndEmployeeID(activityID, employeeID);
         
@@ -118,7 +118,37 @@ public class ActivityController{
         JoinActivity savedJoinActivity = join.save(joinActivity);
 
         return new ResponseEntity<>(savedJoinActivity, HttpStatus.CREATED);
+    }*/
+    
+    @PostMapping("/join/create")
+    public ResponseEntity<JoinActivity> createJoinActivity(@RequestParam int activityID, @RequestParam int employeeID) {
+        long count = join.countByActivityIDAndEmployeeID(activityID, employeeID);
+        
+        if (count > 0) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        Optional<Activity> activityOptional = Optional.ofNullable(repo.findByActivityID(activityID));
+        if (activityOptional.isPresent()) {
+            Activity activity = activityOptional.get();
+
+            if (LocalDate.now().isAfter(activity.getHanCuoiDangKy())) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            JoinActivity joinActivity = new JoinActivity(activityID, employeeID, LocalDate.now());
+            JoinActivity savedJoinActivity = join.save(joinActivity);
+
+            activity.setSoNguoiThamGia(activity.getSoNguoiThamGia() + 1);
+
+            repo.save(activity);
+
+            return new ResponseEntity<>(savedJoinActivity, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
     }
+
 
     
     @GetMapping("/month/{month}")
