@@ -10,7 +10,7 @@ import jakarta.persistence.Column;
 
 public class Felicitation {
     @Id
-    @Column(name = "FELICITATION")
+    @Column(name = "FELICITATIONID")
     private int felicitationid;
 
     @Column(name = "POINT")
@@ -31,20 +31,19 @@ public class Felicitation {
     @Column(name = "VOUCHERID")
     private int voucherid;
     
-    // Constructors
     public Felicitation() {
         super();
     }
 
-    public Felicitation(int felicitationID, int point, java.sql.Date date, String noidung, int nguoinhan, int nguoitang, int voucherID) {
+    public Felicitation(int FelicitationID, int Point, java.sql.Date Date, String Noidung, int Nguoinhan, int Nguoitang, int VoucherID) {
         super();
-        this.felicitationid = felicitationID;
-        this.point = point;
-        this.date = date;
-        this.noidung = noidung;
-        this.nguoinhan = nguoinhan;
-        this.nguoitang = nguoitang;
-        this.voucherid = voucherID;
+        this.felicitationid = FelicitationID;
+        this.point = Point;
+        this.date = Date;
+        this.noidung = Noidung;
+        this.nguoinhan = Nguoinhan;
+        this.nguoitang = Nguoitang;
+        this.voucherid = VoucherID;
     }
 
     // Getters and Setters
@@ -52,55 +51,56 @@ public class Felicitation {
         return felicitationid;
     }
 
-    public void setfelicitationid(int felicitationID) {
-        this.felicitationid = felicitationID;
+    public void setfelicitationid(int FelicitationID) {
+        this.felicitationid = FelicitationID;
     }
+
     
     public int getpoint() {
         return point;
     }
 
-    public void setpoint(int point) {
-        this.point = point;
+    public void setpoint(int Point) {
+        this.point = Point;
     }
     
     public java.sql.Date getdate() {
         return date;
     }
 
-    public void setdate(java.sql.Date date) {
-        this.date = date;
+    public void setdate(java.sql.Date Date) {
+        this.date = Date;
     }
     
     public String getnoidung() {
         return noidung;
     }
 
-    public void setnoidung(String noidung) {
-        this.noidung = noidung;
+    public void setnoidung(String Noidung) {
+        this.noidung = Noidung;
     }
     
     public int getnguoinhan() {
         return nguoinhan;
     }
 
-    public void setnguoinhan(int nguoinhan) {
-        this.nguoinhan = nguoinhan;
+    public void setnguoinhan(int Nguoinhan) {
+        this.nguoinhan = Nguoinhan;
     }
     
     public int getnguoitang() {
         return nguoinhan;
     }
 
-    public void setnguoitang(int nguoitang) {
-        this.nguoitang = nguoinhan;
+    public void setnguoitang(int Nguoitang) {
+        this.nguoitang = Nguoitang;
     }
     
     public int getvoucherid() {
         return voucherid;
     }
 
-    public void setvoucherid(int voucherID) {
-        this.voucherid = voucherID;
+    public void setvoucherid(int VoucherID) {
+        this.voucherid = VoucherID;
     }
 }

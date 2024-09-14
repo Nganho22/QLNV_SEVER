@@ -1,8 +1,7 @@
 package QLNVPointAPI.controller;
 
 import QLNVPointAPI.model.Felicitation;
-import QLNVPointAPI.model.*;
-import QLNVPointAPI.repository.*;
+import QLNVPointAPI.repository.FelicitationRepository;
 
 import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 public class PointController {
 
     @Autowired
-    private PointRepository repo;
+    private FelicitationRepository repo;
 
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public List<Felicitation> getAllFelicitation() {
         return repo.findAll();
     }

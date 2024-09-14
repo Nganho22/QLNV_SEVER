@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "QLNVPointAPI.repository")
 @EntityScan(basePackages = "QLNVPointAPI.model")
-@ComponentScan(basePackages = {"QLNVPointAPI", "QLNVPointAPI.controller", "QLNVPointAPI.service"})
+@ComponentScan(basePackages = {"QLNVPointAPI", "QLNVPointAPI.controller"})
 public class QlnvPointApplication {
 
 	public static void main(String[] args) {
