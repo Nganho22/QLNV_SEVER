@@ -34,4 +34,18 @@ public class JoinActivityService {
     public long countJoinActivityByActivityIDAndEmployeeID(int activityID, int employeeID) {
         return joinActivityRepository.countByActivityIDAndEmployeeID(activityID, employeeID);
     }
+    
+    public int getNextActivityID() {
+        List<Activity> activities = activityRepository.findAllActivityIDs();
+        if (activities.isEmpty()) {
+            return 1; 
+        }
+
+        int maxActivityID = activities.stream()
+            .mapToInt(Activity::getActivityID)
+            .max()
+            .orElse(0);
+
+        return maxActivityID + 1;
+    }
 }

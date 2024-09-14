@@ -149,7 +149,29 @@ public class ActivityController{
         }
     }
 
+    @PostMapping("/activity/create")
+    public ResponseEntity<Activity> createActivity(@RequestBody Activity newActivity) {
+    	
+        if (newActivity.getTenHoatDong() == null || newActivity.getHanCuoiDangKy() == null ||
+            newActivity.getNgayBatDau() == null || newActivity.getNgayKetThuc() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        
+        if (newActivity.getNgayBatDau().isAfter(newActivity.getNgayKetThuc())) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); 
+        }
+        
+        if (newActivity.getHanCuoiDangKy().isAfter(newActivity.getNgayBatDau())) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
+        int nextActivityID = joinActivityService.getNextActivityID();
+        newActivity.setActivityID(nextActivityID);
+
+        Activity savedActivity = repo.save(newActivity);
+
+        return new ResponseEntity<>(savedActivity, HttpStatus.CREATED);
+    }
     
     @GetMapping("/month/{month}")
     public List<Activity> getActivitiesByMonth(@PathVariable("month") int month) {
