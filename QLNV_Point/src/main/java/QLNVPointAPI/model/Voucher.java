@@ -9,8 +9,18 @@ import jakarta.persistence.Id;
 public class Voucher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String code;
-    private String brandId;
-    // getters and setter   s
+    
+    private Integer voucherid;
+    private String tenvoucher;
+    private int trigia;
+    private java.sql.Date hansudung;
+    private String chitiet;
+    private String huongdansudung;
+    private String tinhtrang;
+    
+    public Voucher(Integer voucherID, String tenVoucher, int triGia, java.sql.Date hanSuDung, 
+    				String chiTiet, String huongDanSuDung, String tinhTrang) {
+    	this.voucherid = voucherID;
+    }
+
 }

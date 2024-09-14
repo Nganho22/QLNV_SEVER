@@ -1,4 +1,4 @@
-package QLNVProfileAPI.model;
+package QLNVPointAPI.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
