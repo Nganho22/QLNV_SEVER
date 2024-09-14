@@ -1,11 +1,18 @@
 spring:
+  application:
+    name: QLNV_Strava
+  server:
+    port: 9005
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/QLNV_Activity
   security:
     oauth2:
       client:
         registration:
           strava:
-            client-id: 133704
-            client-secret: a1569f3190c3267208f5343bd8c8abeebd5bad44
+            client-id: 133705
+            client-secret: e415f7798eddbb9eff46ce617b4eaa559dbd39a3
             scope: read
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/strava"
